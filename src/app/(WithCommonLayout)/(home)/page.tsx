@@ -1,14 +1,11 @@
-
 import Herosection from "@/components/modules/home/herosection/Herosection";
-import { Button } from "@/components/ui/button";
+import TuitionTypes from "@/components/modules/home/TuitionTypes/TuitionTypes";
 
 export default function HomePage() {
   return (
-    <div>
-     <Herosection/>
-      <Button>Click Me</Button>
-      <p> Hello Word homw page </p>
-
+    <div className="bg-amber-50">
+      <Herosection />
+      <TuitionTypes />
     </div>
   );
 }

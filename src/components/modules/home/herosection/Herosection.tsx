@@ -4,7 +4,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -56,7 +55,6 @@ const Herosection = () => {
             </div>
           </CarouselItem>
         </CarouselContent>
-
       </Carousel>
     </div>
   );
