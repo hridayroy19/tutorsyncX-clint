@@ -43,7 +43,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex space-x-4">
             <Link
-              href="#"
+              href="/login"
               className="px-4 py-2 border rounded-md text-black bg-orange-400 hover:bg-orange-600 hover:text-white"
             >
               Login
