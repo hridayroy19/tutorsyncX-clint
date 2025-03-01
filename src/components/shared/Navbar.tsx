@@ -8,8 +8,8 @@ import Link from "next/link";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
-      <nav className="bg-[#ffffffce] shadow-md w-full">
+    <header className="border-b bg-background w-full sticky top-0 z-10">
+      <nav className=" bg-gradient-to-bl  border-b from-orange-200 to-white  shadow-amber-400 w-full">
         <div className="container mx-auto flex justify-between items-center p-2">
           <Link href="/">
             <div className="flex items-center space-x-2">
@@ -30,8 +30,8 @@ const Navbar = () => {
             <Link href="#" className="hover:text-orange-500">
               TUITION JOBS
             </Link>
-            <Link href="#" className="hover:text-orange-500">
-              PREMIUM TUTORS
+            <Link href="/findTutors" className="hover:text-orange-500">
+              FIND TUTORS
             </Link>
             <Link href="#" className="hover:text-orange-500">
               TUTOR REQUEST
@@ -82,7 +82,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-    </div>
+    </header>
   );
 };
 
