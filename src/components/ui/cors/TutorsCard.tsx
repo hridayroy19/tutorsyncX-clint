@@ -3,7 +3,7 @@ import React from "react";
 
 const TutorsCard = () => {
   return (
-    <div className=" lg:w-[300px] w-[320px] rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6]">
+    <div className=" lg:w-[300px] w-[350px] rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6]">
       <div className="w-full h-48 relative">
         <Image
           src="https://i.ibb.co.com/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg" // Update this path to your image

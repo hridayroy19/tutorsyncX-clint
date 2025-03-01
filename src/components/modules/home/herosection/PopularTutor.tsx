@@ -14,7 +14,6 @@ const PopularTutor = () => {
         <TutorsCard />
         <TutorsCard />
         <TutorsCard />
-        <TutorsCard />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <header className="border-b bg-background w-full sticky top-0 z-10">
       <nav className=" bg-gradient-to-bl  border-b from-orange-200 to-white  shadow-amber-400 w-full">
-        <div className="container mx-auto flex justify-between items-center p-2">
+        <div className="container mx-auto flex justify-between items-center px-2">
           <Link href="/">
             <div className="flex items-center space-x-2">
               <Image
