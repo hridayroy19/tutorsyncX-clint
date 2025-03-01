@@ -30,7 +30,7 @@ const TuitionTypes = () => {
   ];
   return (
     <div>
-      <div className="container mx-auto px-4  py-8">
+      <div className="container mx-auto px-4 py-8">
         <h1 className="text-center lg:text-4xl text-2xl font-medium text-gray-700">
           {" "}
           Tuition Types

@@ -1,17 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { MapPin, Search } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Modal from "./Modal";
 
 const Herosection = () => {
   return (
-    <div className="container mx-auto px-4 py-10 ">
+    <div className="container border-b shadow mx-auto md:px-4 px-2 py-10 ">
       <div className="grid grid-cols-1 px-5 md:grid-cols-2  items-start text-center md:text-left">
-        <div className=" w-[700px]">
+        <div className=" lg:w-[700px] md:w-[500] w-full">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            Best Tutoring Platform
+            <span className="text-orange-600"> Best</span> Tutoring Platform
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+          <h2 className=" text-4xl md:text-6xl font-bold leading-tight">
             for Home & Online Tuitions
           </h2>
           <p className="mt-5 flex gap-2 items-center text-gray-600 text-2xl">
@@ -21,7 +20,7 @@ const Herosection = () => {
             Find the Right Tutor in Your Area
           </p>
           <div>
-            <Modal/>
+            <Modal />
           </div>
         </div>
 
@@ -32,7 +31,7 @@ const Herosection = () => {
             alt="Tutoring"
             width={350}
             height={500}
-            className="max-w-full h-auto"
+            className="lg:max-w-full h-auto"
           />
         </div>
       </div>

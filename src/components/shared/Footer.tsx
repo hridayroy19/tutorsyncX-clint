@@ -4,7 +4,7 @@ import { Facebook, TwitchIcon, Youtube } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 px-6 py-10 md:px-16 lg:px-24">
+    <footer className="bg-gray-100 text-gray-700 mt-10 px-6 py-10 md:px-16 lg:px-24">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left  */}
         <div>
@@ -79,7 +79,12 @@ const Footer = () => {
             the Button to Download.
           </p>
           <div className="mt-4 flex justify-center md:justify-start">
-            <Image src="https://i.ibb.co.com/mVf1LTS5/cda2f385c49db1eefb330012f18b0c0e.png" alt="QR Code" width={100} height={100} />
+            <Image
+              src="https://i.ibb.co.com/mVf1LTS5/cda2f385c49db1eefb330012f18b0c0e.png"
+              alt="QR Code"
+              width={100}
+              height={100}
+            />
           </div>
         </div>
       </div>
