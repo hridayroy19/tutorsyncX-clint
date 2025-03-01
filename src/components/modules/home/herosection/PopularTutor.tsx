@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import TutorsCard from "@/components/ui/cors/TutorsCard";
 
 const PopularTutor = () => {
@@ -9,6 +10,9 @@ const PopularTutor = () => {
       <p className="text-center lg:text-2xl text-xl text-gray-700 mt-3 mb-10">
         Here are few of the Verified Teachers
       </p>
+      <div className="flex justify-end mb-7">
+        <Button className="px-2 py-1 bg-orange-500 text-sm">View More</Button>
+      </div>
       <div className="grid xl:grid-cols-4  lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-5 ">
         <TutorsCard />
         <TutorsCard />
