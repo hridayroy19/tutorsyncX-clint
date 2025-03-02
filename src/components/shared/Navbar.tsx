@@ -33,8 +33,8 @@ const Navbar = () => {
             <Link href="/findTutors" className="hover:text-orange-500">
               FIND TUTORS
             </Link>
-            <Link href="#" className="hover:text-orange-500">
-              TUTOR REQUEST
+            <Link href="/blog" className="hover:text-orange-500">
+              BLOG
             </Link>
             <Link href="/faq" className="hover:text-orange-500">
              FAQ
@@ -67,8 +67,8 @@ const Navbar = () => {
             <Link href="#" className="block hover:text-orange-400">
               PREMIUM TUTORS
             </Link>
-            <Link href="#" className="block hover:text-orange-400">
-              TUTOR REQUEST
+            <Link href="/blog" className="block hover:text-orange-400">
+              Blog
             </Link>
             <Link href="/faq" className="block hover:text-orange-400">
               FAQ
