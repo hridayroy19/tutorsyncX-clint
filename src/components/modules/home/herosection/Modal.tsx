@@ -22,12 +22,11 @@ const Modal = () => {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className=" uppercase hover:bg-amber-800 text-lg mt-6 rounded-full bg-amber-600  py-5">
-            {" "}
+          <Button className="relative uppercase text-lg mt-6 rounded-full bg-amber-600 py-6 px-8 flex items-center gap-2 transition-all duration-300 hover:bg-amber-800 hover:scale-105 before:absolute before:inset-0 before:-z-10 before:rounded-full before:border-4 before:border-amber-500 before:scale-100 before:opacity-100 before:animate-pulse">
             <span>
               <Search />
-            </span>{" "}
-            Find Tutor{" "}
+            </span>
+            Find Tutor
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

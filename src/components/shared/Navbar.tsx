@@ -36,8 +36,8 @@ const Navbar = () => {
             <Link href="#" className="hover:text-orange-500">
               TUTOR REQUEST
             </Link>
-            <Link href="#" className="hover:text-orange-500">
-              COURSES
+            <Link href="/faq" className="hover:text-orange-500">
+             FAQ
             </Link>
           </div>
 
@@ -70,8 +70,8 @@ const Navbar = () => {
             <Link href="#" className="block hover:text-orange-400">
               TUTOR REQUEST
             </Link>
-            <Link href="#" className="block hover:text-orange-400">
-              COURSES
+            <Link href="/faq" className="block hover:text-orange-400">
+              FAQ
             </Link>
             <Link
               href="#"
