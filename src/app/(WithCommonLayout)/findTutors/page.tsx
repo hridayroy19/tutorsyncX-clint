@@ -1,6 +1,9 @@
+import TutorsFindBanner from "@/components/modules/findTutor";
 
 const FindTutorpage = () => {
-  return <div>hello</div>;
+  return <div>
+    <TutorsFindBanner/>
+  </div>;
 };
 
 export default FindTutorpage;

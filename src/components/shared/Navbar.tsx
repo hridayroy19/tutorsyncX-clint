@@ -61,8 +61,8 @@ const Navbar = () => {
             <Link href="/findTutors" className="hover:text-orange-500">
               FIND TUTORS
             </Link>
-            <Link href="" className="hover:text-orange-500">
-              CONTACT
+            <Link href="/about" className="hover:text-orange-500">
+              ABOUT
             </Link>
             <Link href="/blog" className="hover:text-orange-500">
               BLOG
