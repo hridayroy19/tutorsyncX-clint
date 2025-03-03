@@ -15,35 +15,32 @@ const ProfileSection = () => {
 
       <div className="mt-6">
         <h2 className="text-xl font-semibold">About</h2>
-        <div className="flex space-x-4 mt-2">
-          <span>My Home</span>
-          <span>Pictures</span>
-          <span>🌟 References</span>
-          <span>🌟 Friends</span>
-          <span>🌟 Favorites</span>
-        </div>
+
+        <p>
+          I am going on a trip with my best friend this time, Célia. She is a
+          Parisian recently and I am in Bordeaux in the south west of France.
+        </p>
       </div>
 
       <div className="mt-6">
         <h2 className="text-xl font-semibold">Overview</h2>
         <div className="mt-2">
-          <p>☐</p>
+          <p></p>
         </div>
       </div>
 
       <div className="mt-6">
-        <h2 className="text-xl font-semibold">
-          3 references ★ 3 Confirmed & Positive
+        <h2 className="text-lg mb-2 font-semibold">
+          Expected Minimum Salary : 5000 Tk/Month
         </h2>
-        <ul className="mt-2 space-y-2">
-          <li>Fluent in French; learning English</li>
-          <li>No hometown listed</li>
-          <li>Member since 2017</li>
-          <li>Commercial</li>
-          <li>Trade</li>
-          <li>No hometown listed</li>
-          <li>100% complete profile</li>
-        </ul>
+        <h2 className="text-lg mb-2 font-semibold">Current Status for Tuition : Available</h2>
+        <h2 className="text-lg mb-2 font-semibold">Days Per Week : 4 Day/Week, 5 Day/Week</h2>
+        <h2 className="text-lg mb-2 font-semibold">Tuitoring Experience : 6 Years</h2>
+        <h2 className="text-lg mb-2 font-semibold">Extra Facilities : Phone help</h2>
+        <h2 className="text-lg mb-2 font-semibold">
+          Preferred Medium of Instruction : Bangla Medium, English Version, Test
+          Preparation
+        </h2>
       </div>
 
       <div className="mt-6">

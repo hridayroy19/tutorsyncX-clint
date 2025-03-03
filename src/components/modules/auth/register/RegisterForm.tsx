@@ -1,14 +1,49 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { registrationSchema } from "./registerValidation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/services/AuthService";
+import { toast } from "sonner";
 
 const RegisterForm = () => {
-  const [role, setRole] = useState<"guardian" | "tutor">("tutor");
+  const [role, setRole] = useState<"student" | "tutor">("tutor");
+
+  const form = useForm({
+    resolver: zodResolver(registrationSchema),
+  });
+
+  // password validation
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const res = await registerUser(data);
+      console.log(res);
+      if (res?.success) {
+        toast.success(res?.message);
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">
@@ -41,9 +76,9 @@ const RegisterForm = () => {
                 variant="outline"
                 className={cn(
                   "flex items-center gap-2 px-6 py-2",
-                  role === "guardian" && "border-orange-500 bg-orange-100"
+                  role === "student" && "border-orange-500 bg-orange-100"
                 )}
-                onClick={() => setRole("guardian")}
+                onClick={() => setRole("student")}
               >
                 👨‍👧 Student
               </Button>
@@ -63,44 +98,98 @@ const RegisterForm = () => {
               Register Now
             </h3>
 
-            <div className="space-y-4 mt-4">
-              <label className="text-gray-700 font-medium">Name</label>
-              <Input
-                type="text"
-                placeholder="Enter Your Name"
-                className="w-full"
-              />
-              <label className="text-gray-700 font-medium">
-                Mobile Number (+88)
-              </label>
-              <Input type="text" placeholder="01********" className="w-full" />
-              <label className="text-gray-700 font-medium">Password</label>
-              <Input
-                type="password"
-                placeholder="password"
-                className="w-full"
-              />
-              <label className="text-gray-700 font-medium">
-                Confarm Password
-              </label>
-              <Input
-                type="password"
-                placeholder="Confarm password"
-                className="w-full"
-              />
-              <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="form-checkbox" /> Remember
-                  me
-                </label>
-                <a href="#" className="text-orange-500 text-sm">
-                  Forgot password?
-                </a>
-              </div>
+            {/* <div className="space-y-4 mt-4">
+
+             
               <Button className="w-full mt-2 bg-orange-500 text-white hover:bg-orange-600">
                 Login
               </Button>
-            </div>
+            </div> */}
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormLabel />
+                      <FormControl>
+                        <Input
+                          type="text"
+                          {...field}
+                          value={field.value || ""}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormLabel />
+                      <FormControl>
+                        <Input
+                          type="email"
+                          {...field}
+                          value={field.value || ""}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="role"
+                  defaultValue="tutor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Role</FormLabel>
+                      <FormControl>
+                        <select
+                          {...field}
+                          className="border p-2 rounded w-full"
+                          value={field.value}
+                          onChange={(e) => field.onChange(e.target.value)}
+                        >
+                          <option value="student">Student</option>
+                          <option value="tutor">Tutor</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormLabel />
+                      <FormControl>
+                        <Input
+                          type="password"
+                          {...field}
+                          value={field.value || ""}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button className="mt-5 w-full" type="submit">
+                  Register
+                </Button>
+              </form>
+            </Form>
             <p className="text-gray-600 text-center mt-7">
               If you are not registered, please{" "}
               <Link href="/login" className="text-orange-500 font-semibold">

@@ -1,15 +1,43 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useUser } from "@/context/UserContext";
+import { usePathname, useRouter } from "next/navigation";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { logout } from "@/services/AuthService";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
+import { protectedRoutes } from "@/contants";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, setIsLoading } = useUser();
+
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogut = () => {
+    logout();
+    setIsLoading(true);
+    if (protectedRoutes.some((route) => pathname.match(route))) {
+      router.push("/");
+    }
+  };
+
   return (
-    <header className="border-b bg-background w-full sticky top-0 z-10">
-      <nav className=" bg-gradient-to-bl  border-b from-orange-200 to-white  shadow-amber-400 w-full">
+    <div className="border-b bg-background w-full sticky top-0 z-10">
+      <div className=" bg-gradient-to-bl  border-b from-orange-200 to-white  shadow-amber-400 w-full">
         <div className="container mx-auto flex justify-between items-center px-2">
           <Link href="/">
             <div className="flex items-center space-x-2">
@@ -27,28 +55,56 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 text-black font-semibold">
-            <Link href="#" className="hover:text-orange-500">
-              TUITION JOBS
+            <Link href="/" className="hover:text-orange-500">
+              HOME
             </Link>
             <Link href="/findTutors" className="hover:text-orange-500">
               FIND TUTORS
+            </Link>
+            <Link href="" className="hover:text-orange-500">
+              CONTACT
             </Link>
             <Link href="/blog" className="hover:text-orange-500">
               BLOG
             </Link>
             <Link href="/faq" className="hover:text-orange-500">
-             FAQ
+              FAQ
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-4">
-            <Link
-              href="/login"
-              className="px-4 py-2 border rounded-md text-black bg-orange-400 hover:bg-orange-600 hover:text-white"
-            >
-              Login
+          {user ? (
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <Link href="student/dashboard">
+                    {" "}
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    className="text-red-600"
+                    onClick={handleLogut}
+                  >
+                    <LogOut />
+                    <span>LogOut</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
+          ) : (
+            <Link href="/login">
+              <Button className="rounded-full px-2 size-10">Login</Button>
             </Link>
-          </div>
+          )}
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden">
@@ -81,8 +137,8 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 };
 

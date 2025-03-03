@@ -1,21 +1,65 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+
+import { loginUser } from "@/services/AuthService";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { loginSchema } from "./loginValidation";
 
 const LoginForm = () => {
-  const [role, setRole] = useState<"guardian" | "tutor">("tutor");
+  const form = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
+  // const {setIsLoading} = useUser()
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const res = await loginUser(data);
+      console.log(res);
+
+      if (res?.success) {
+        toast.success(res?.message);
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
+        }
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(data);
+  };
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">
         {/* Left Section  */}
         <div className="md:w-1/2 text-center md:text-left space-y-4">
           <h2 className="text-3xl font-semibold text-orange-600 flex items-center gap-2">
-            Welcome Back <span className="wave">👋</span>
+            Welcome Back <span className="wave">👋</span>{" "}
+            <Link href="/">
+              <span className="underline text-lg text-black">HOME</span>
+            </Link>
           </h2>
           <p className="text-gray-600 lg:text-3xl text-lg ">
             <span className="font-semibold text-orange-500">Login</span> with
@@ -36,56 +80,57 @@ const LoginForm = () => {
 
         <Card className="md:w-1/2 max-w-md w-full p-6 shadow-lg">
           <CardContent>
-            <div className="flex justify-center gap-4 mb-6">
-              <Button
-                variant="outline"
-                className={cn(
-                  "flex items-center gap-2 px-6 py-2",
-                  role === "guardian" && "border-orange-500 bg-orange-100"
-                )}
-                onClick={() => setRole("guardian")}
-              >
-                👨‍👧 Student
-              </Button>
-              <Button
-                variant="outline"
-                className={cn(
-                  "flex items-center gap-2 px-6 py-2",
-                  role === "tutor" && "border-orange-500 bg-orange-100"
-                )}
-                onClick={() => setRole("tutor")}
-              >
-                🧑‍🏫 Tutor
-              </Button>
-            </div>
-
             <h3 className="text-2xl font-semibold text-orange-500 text-center">
               Login Now
             </h3>
 
             <div className="space-y-4 mt-4">
-              <label className="text-gray-700 font-medium">
-                Mobile Number (+88)
-              </label>
-              <Input type="text" placeholder="01********" className="w-full" />
-              <label className="text-gray-700 font-medium">Password</label>
-              <Input
-                type="password"
-                placeholder="example: employee@+%123"
-                className="w-full"
-              />
-              <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="form-checkbox" /> Remember
-                  me
-                </label>
-                <a href="#" className="text-orange-500 text-sm">
-                  Forgot password?
-                </a>
-              </div>
-              <Button className="w-full mt-2 bg-orange-500 text-white hover:bg-orange-600">
-                Login
-              </Button>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormLabel />
+                        <FormControl>
+                          <Input
+                            type="email"
+                            {...field}
+                            value={field.value || ""}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormLabel />
+                        <FormControl>
+                          <Input
+                            type="password"
+                            {...field}
+                            value={field.value || ""}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full mt-2 bg-orange-500 text-white hover:bg-orange-600"
+                  >
+                    Login
+                  </Button>
+                </form>
+              </Form>
             </div>
             <p className="text-gray-600 text-center mt-7">
               If you are not registered, please{" "}
