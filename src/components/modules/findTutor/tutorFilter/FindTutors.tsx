@@ -1,86 +1,209 @@
-"use client"
-import { Button } from "@/components/ui/button";
+"use client";
 import TutorsCard from "@/components/ui/cors/TutorsCard";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
+import { motion } from "framer-motion";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useEffect, useState } from "react";
+
+interface Tutor {
+  id: number;
+  name: string;
+  phone: string;
+  salary: string;
+  tuition: string;
+  available_days_per_week: number;
+  tuition_style: string;
+  experience: string;
+  subject: string[];
+  rating: number;
+  class: string;
+  location: string;
+  Preferred_Area_to_Teach: string;
+}
 
 const FindTutors = () => {
+  const [tutorsData, setTutorsData] = useState<Tutor[]>([]);
+  const [filteredTutors, setFilteredTutors] = useState<Tutor[]>([]);
+  const [filters, setFilters] = useState({
+    subject: "",
+    rating: "",
+    price: "",
+    location: "",
+  });
 
-    const [filters, setFilters] = useState({
-        subject: "",
-        rating: "",
-        price: "",
-        availability: "",
-        location: "",
-      });
-    
-      const handleFilterChange = (key, value) => {
-        setFilters({ ...filters, [key]: value });
-      };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/tutor.json");
+        const data = await response.json();
+        setTutorsData(data);
+        setFilteredTutors(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const applyFilter = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fSubject = form.subject.value;
+    const fRating = form.rating.value;
+    const fPrice = form.price.value;
+    const fLocation = form.location.value;
+
+    setFilters({
+      subject: fSubject,
+      rating: fRating,
+      price: fPrice,
+      location: fLocation,
+    });
+
+    let filtered = tutorsData.filter((tutor) => {
+      let subjectMatch = true;
+      let ratingMatch = true;
+      let locationMatch = true;
+
+      if (fSubject && fSubject !== "All") {
+        subjectMatch = tutor.subject.some((sub) =>
+          sub.toLowerCase().includes(fSubject.toLowerCase().replace(" ", ""))
+        );
+      }
+
+      if (fRating) {
+        if (fRating === "5") {
+          ratingMatch = tutor.rating === 5;
+        } else if (fRating === "4") {
+          ratingMatch = tutor.rating >= 4;
+        } else if (fRating === "3") {
+          ratingMatch = tutor.rating >= 3;
+        }
+      }
+
+      if (fLocation) {
+        locationMatch = tutor.location
+          .toLowerCase()
+          .includes(fLocation.toLowerCase());
+      }
+      return subjectMatch && ratingMatch && locationMatch;
+    });
+
+    if (fPrice) {
+      filtered = [...filtered];
+      if (fPrice === "hightolow") {
+        filtered.sort(
+          (a, b) =>
+            parseInt(b.salary.replace(" BDT", "")) -
+            parseInt(a.salary.replace(" BDT", ""))
+        );
+      } else if (fPrice === "lowtohigh") {
+        filtered.sort(
+          (a, b) =>
+            parseInt(a.salary.replace(" BDT", "")) -
+            parseInt(b.salary.replace(" BDT", ""))
+        );
+      }
+    }
+
+    setFilteredTutors(filtered);
+  };
 
   return (
     <div>
-      <div className="mb-16">
-        <div className="p-4 bg-white shadow-md rounded-lg flex flex-col gap-4 md:flex-row md:items-center">
-      {/* Subject Filter */}
-      <Select onValueChange={(value) => handleFilterChange("subject", value)}>
-        <SelectTrigger className="w-full md:w-40">
-          <SelectValue placeholder="Select Subject" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="All">All</SelectItem>
-          <SelectItem value="math">Math</SelectItem>
-          <SelectItem value="science">Science</SelectItem>
-          <SelectItem value="english">English</SelectItem>
-        </SelectContent>
-      </Select>
+      <div className="mb-16 border w-full mx-auto container">
+        <form
+          className="p-4 bg-white shadow-md rounded-lg flex flex-col gap-4 md:flex-row md:items-center"
+          onSubmit={applyFilter}
+        >
+          <Select name="subject">
+            <SelectTrigger className="w-full md:w-40">
+              <SelectValue placeholder="Select Subject" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">All</SelectItem>
+              <SelectItem value="Mathematics">Mathematics</SelectItem>
+              <SelectItem value="Physics">Physics</SelectItem>
+              <SelectItem value="English">English</SelectItem>
+              <SelectItem value="Biology">Biology</SelectItem>
+              <SelectItem value="Chemistry">Chemistry</SelectItem>
+              <SelectItem value="Higher Math">Higher Math</SelectItem>
+              <SelectItem value="Bangla">Bangla</SelectItem>
+              <SelectItem value="General Science">General Science</SelectItem>
+              <SelectItem value="Accounting">Accounting</SelectItem>
+              <SelectItem value="Economics">Economics</SelectItem>
+            </SelectContent>
+          </Select>
 
-      {/* Rating Filter */}
-      <Select onValueChange={(value) => handleFilterChange("rating", value)}>
-        <SelectTrigger className="w-full md:w-40">
-          <SelectValue placeholder="Rating" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="5">5 Stars</SelectItem>
-          <SelectItem value="4">4+ Stars</SelectItem>
-          <SelectItem value="3">3+ Stars</SelectItem>
-        </SelectContent>
-      </Select>
+          <Select name="rating">
+            <SelectTrigger className="w-full md:w-40">
+              <SelectValue placeholder="Rating" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="5">5 Stars</SelectItem>
+              <SelectItem value="4">4+ Stars</SelectItem>
+              <SelectItem value="3">3+ Stars</SelectItem>
+            </SelectContent>
+          </Select>
 
-      {/* Price Filter */}
-      <Input
-        type="number"
-        placeholder="Max Price ($/hr)"
-        className="w-full md:w-40"
-        onChange={(e) => handleFilterChange("price", e.target.value)}
-      />
+          <Select name="price">
+            <SelectTrigger className="w-full md:w-40">
+              <SelectValue placeholder="Price" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="hightolow">High To Low</SelectItem>
+              <SelectItem value="lowtohigh">Low To High</SelectItem>
+            </SelectContent>
+          </Select>
 
-      {/* Availability Filter */}
-      <Select onValueChange={(value) => handleFilterChange("availability", value)}>
-        <SelectTrigger className="w-full md:w-40">
-          <SelectValue placeholder="Availability" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="morning">Morning</SelectItem>
-          <SelectItem value="afternoon">Afternoon</SelectItem>
-          <SelectItem value="evening">Evening</SelectItem>
-        </SelectContent>
-      </Select>
+          <Input
+            type="text"
+            placeholder="Location"
+            className="w-full md:w-40"
+            name="location"
+          />
 
-      {/* Location Filter */}
-      <Input
-        type="text"
-        placeholder="Location"
-        className="w-full md:w-40"
-        onChange={(e) => handleFilterChange("location", e.target.value)}
-      />
+          <div className="relative flex items-center justify-center">
+            <motion.div
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.6, 0, 0.6],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+              }}
+              className="absolute w-32 h-32 border-4 border-teal-400 rounded-full opacity-50"
+            />
 
-      {/* Apply Filter Button */}
-      <Button className="w-full md:w-auto">Apply Filters</Button>
-    </div></div>
-      <div>
-        <TutorsCard />
+            {/* Main Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative px-6 py-3 text-white bg-gradient-to-r from-purple-500 to-indigo-700 rounded-full shadow-lg"
+            >
+              Apply Filter →
+            </motion.button>
+          </div>
+        </form>
+      </div>
+
+      <div className=" grid grid-cols-4 gap-7 justify-center">
+        {filteredTutors.length > 0 ? (
+          filteredTutors.map((tutor) => (
+            <TutorsCard key={tutor.id} tutor={tutor} />
+          ))
+        ) : (
+          <p>No tutors found with the applied filters</p>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -16,24 +17,43 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search } from "lucide-react";
+import Link from "next/link";
+
 const Modal = () => {
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="relative uppercase text-lg mt-6 rounded-full bg-amber-600 py-6 px-8 flex items-center gap-2 transition-all duration-300 hover:bg-amber-800 hover:scale-105 before:absolute before:inset-0 before:-z-10 before:rounded-full before:border-4 before:border-amber-500 before:scale-100 before:opacity-100 before:animate-pulse">
-            <span>
-              <Search />
-            </span>
-            Find Tutor
-          </Button>
+          <div className="relative flex justify-start uppercase text-lg mt-6" >
+          <div className="relative flex items-center justify-center">
+            <motion.div
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.6, 0, 0.6], 
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+              }}
+              className="absolute w-32 h-32 border-4 border-teal-400 rounded-full opacity-50"
+            />
+
+            {/* Main Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative px-6 py-3 text-white bg-gradient-to-r from-purple-500 to-indigo-700 rounded-full shadow-lg"
+            >
+              🔎 Apply Filter →
+            </motion.button>
+          </div>
+          </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl text-gray-600">
-              {" "}
-              Search Tutor{" "}
+              
+              Search Tutor
             </DialogTitle>
           </DialogHeader>
           <div className="py-4 w-full">
@@ -84,9 +104,9 @@ const Modal = () => {
             </Select>
           </div>
           <DialogFooter>
-            <Button type="submit" className="bg-orange-400 w-full">
+            <Link href="/findTutors"><Button type="submit" className="bg-orange-400 w-full">
               Search Tutor
-            </Button>
+            </Button></Link>
           </DialogFooter>
         </DialogContent>
       </Dialog>
