@@ -36,8 +36,8 @@ const items = [
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "profile",
+    url: "/tutors/profile",
     icon: Settings,
   },
 ];
