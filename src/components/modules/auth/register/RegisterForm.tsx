@@ -19,10 +19,11 @@ import { registrationSchema } from "./registerValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "@/services/AuthService";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [role, setRole] = useState<"student" | "tutor">("tutor");
-
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(registrationSchema),
   });
@@ -35,6 +36,7 @@ const RegisterForm = () => {
       console.log(res);
       if (res?.success) {
         toast.success(res?.message);
+        router.push("/login");
       } else {
         toast.error(res?.message);
       }

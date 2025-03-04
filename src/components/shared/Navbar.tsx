@@ -27,7 +27,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogut = () => {
+  const handleLogout = () => {
     logout();
     setIsLoading(true);
     if (protectedRoutes.some((route) => pathname.match(route))) {
@@ -35,9 +35,17 @@ const Navbar = () => {
     }
   };
 
+  // ✅ Dynamically 
+  const dashboardUrl =
+    user?.role === "student"
+      ? "/student/dashboard"
+      : user?.role === "tutor"
+      ? "/tutors/dashboard"
+      : "/dashboard"; 
+
   return (
     <div className="border-b bg-background w-full sticky top-0 z-10">
-      <div className=" bg-gradient-to-bl  border-b from-orange-200 to-white  shadow-amber-400 w-full">
+      <div className="bg-gradient-to-bl border-b from-orange-200 to-white shadow-amber-400 w-full">
         <div className="container mx-auto flex justify-between items-center px-2">
           <Link href="/">
             <div className="flex items-center space-x-2">
@@ -47,7 +55,7 @@ const Navbar = () => {
                 width={120}
                 height={50}
               />
-              <span className=" text-2xl text-orange-700 font-serif ">
+              <span className="text-2xl text-orange-700 font-serif">
                 TutorsyncX
               </span>
             </div>
@@ -73,33 +81,27 @@ const Navbar = () => {
           </div>
 
           {user ? (
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <Link href="student/dashboard">
-                    {" "}
-                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                  </Link>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    className="text-red-600"
-                    onClick={handleLogut}
-                  >
-                    <LogOut />
-                    <span>LogOut</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <Link href={dashboardUrl}>
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-red-600" onClick={handleLogout}>
+                  <LogOut />
+                  <span>Log Out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <Link href="/login">
               <Button className="rounded-full px-2 size-10">Login</Button>
@@ -130,8 +132,8 @@ const Navbar = () => {
               FAQ
             </Link>
             <Link
-              href="#"
-              className="block bg-orange-400 mt-2 px-4 py-2 border rounded-md  hover:text-white"
+              href="/login"
+              className="block bg-orange-400 mt-2 px-4 py-2 border rounded-md hover:text-white"
             >
               Login
             </Link>

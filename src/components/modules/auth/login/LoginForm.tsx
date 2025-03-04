@@ -19,6 +19,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { loginSchema } from "./loginValidation";
+import { useUser } from "@/context/UserContext";
+
 
 const LoginForm = () => {
   const form = useForm({
@@ -28,15 +30,17 @@ const LoginForm = () => {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const router = useRouter();
-  // const {setIsLoading} = useUser()
+  const {setIsLoading} = useUser()
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
+      setIsLoading(true)
       console.log(res);
 
       if (res?.success) {
         toast.success(res?.message);
+        router.push("/");
         if (redirect) {
           router.push(redirect);
         } else {
@@ -50,6 +54,11 @@ const LoginForm = () => {
     }
     console.log(data);
   };
+
+
+
+
+
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">

@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const page = () => {
-    return (
-        <div>
-            dddd
-        </div>
-    );
+  return <div>Well Come to Tutor</div>;
 };
 
 export default page;

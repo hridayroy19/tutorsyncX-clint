@@ -1,18 +1,13 @@
 "use client";
-
+import { useUser } from "@/context/UserContext";
 import Image from "next/image";
-import React from "react";
-import EditProfile from "./Modal";
-
 
 const Profiles = () => {
+  const user = useUser();
+  console.log(user);
   return (
     <div className="  bg-gray-200 flex flex-col">
       {/* Navbar */}
-      <nav className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Profile</h1>
-        <EditProfile />
-      </nav>
       <div className="flex items-center justify-center p-6 flex-1">
         <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-4xl flex flex-col md:flex-row gap-6">
           {/* Profile Card */}
@@ -47,11 +42,14 @@ const Profiles = () => {
             <div className="mt-4 space-y-4">
               <div>
                 <p className="text-gray-500 text-sm">Full Name</p>
-                <p className="font-medium">Johnathan Doe</p>
+                <p className="font-medium">..</p>
               </div>
               <div>
                 <p className="text-gray-500 text-sm">Email</p>
-                <p className="font-medium text-blue-600">johnathan@admin.com</p>
+                <p className="font-medium text-blue-600">
+                  {" "}
+                  {user?.user?.email}{" "}
+                </p>
               </div>
               <div>
                 <p className="text-gray-500 text-sm">Password</p>
@@ -59,11 +57,11 @@ const Profiles = () => {
               </div>
               <div>
                 <p className="text-gray-500 text-sm">Phone No</p>
-                <p className="font-medium">123 456 7890</p>
+                <p className="font-medium">..</p>
               </div>
               <div>
                 <p className="text-gray-500 text-sm">Message</p>
-                <p className="font-medium"> i am hriody </p>
+                <p className="font-medium"> .. </p>
               </div>
             </div>
           </div>

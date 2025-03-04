@@ -1,8 +1,9 @@
+import TutorProfile from "@/components/modules/dashboard/tutorProfile/TutorProfile";
 
 const page = () => {
     return (
         <div>
-            tutor profile
+           <TutorProfile/>
         </div>
     );
 };
