@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tutor Website
 
-## Getting Started
+A web platform where students can find and book professional tutors for various subjects. Tutors can create their profiles, list their skills, set their availability, and accept bookings from students.
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Tutor Website project connects students with professional tutors in a variety of subjects. Students can search for tutors, view their profiles, and schedule lessons based on their availability. Tutors can create a personalized profile, list their teaching subjects, experience, and set their availability for students.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Student Side:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  - Search for tutors by subject or rating.
+  - View tutor profiles with experience and teaching style.
+  - Book appointments with tutors based on their availability.
+  - Rate and review tutors after sessions.
 
-## Learn More
+- **Tutor Side:**
+  - Create a profile with personal information, experience, and subject expertise.
+  - Set available hours for lessons.
+  - Accept or decline student bookings.
+  - Manage profile details and update availability.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To set up the Tutor Website locally, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Nextjs
+- Shadcn ui
+- Tailwind Css
+- Typescript
+- Mongoose
+- Zod
+- Node.js
+- npm
+- A database MongoDB
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Steps to Install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/hridayroy19/tutorsyncX-clint.git
+
+   npm Inastall
+   ```
