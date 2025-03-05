@@ -1,9 +1,13 @@
+"use client"
 import React from 'react';
 import Image from "next/image";
 import EditProfile from '../profile/Modal';
+import { useUser } from '@/context/UserContext';
 
 
 const TutorProfile = () => {
+ const user = useUser()
+
     return (
         <div>
             <div className="  bg-gray-200 flex flex-col">
@@ -23,7 +27,7 @@ const TutorProfile = () => {
                           alt="logo"
                           className="w-32 h-32 rounded-full border-4 border-white shadow-md"
                         />
-                        <h2 className="mt-4 text-xl font-semibold">Hanna Gover</h2>
+                        <h2 className="mt-4 text-xl font-semibold">{user.email}</h2>
                         <p className="text-gray-500 text-sm">Accounts Manager, Amix Corp</p>
                         <div className="mt-4 flex gap-6 text-gray-600">
                           <div className="flex items-center gap-1">
@@ -33,10 +37,6 @@ const TutorProfile = () => {
                             <span className="text-lg">📧</span> 54
                           </div>
                         </div>
-                        <button className=" mt-10 text-teal-500 btn btn-outline">
-                          {" "}
-                          LogOut
-                        </button>
                       </div>
                       {/* Profile Details */}
                       <div className="flex-1 p-6 bg-white rounded-lg">
@@ -44,21 +44,14 @@ const TutorProfile = () => {
                           Profile Details
                         </h2>
                         <div className="mt-4 space-y-4">
-                          <div>
-                            <p className="text-gray-500 text-sm">Full Name</p>
-                            <p className="font-medium">Johnathan Doe</p>
-                          </div>
+                        
                           <div>
                             <p className="text-gray-500 text-sm">Email</p>
-                            <p className="font-medium text-blue-600">johnathan@admin.com</p>
+                            <p className="font-medium text-blue-600"> {user.email} </p>
                           </div>
                           <div>
                             <p className="text-gray-500 text-sm">Password</p>
                             <p className="font-medium">********</p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 text-sm">Phone No</p>
-                            <p className="font-medium">123 456 7890</p>
                           </div>
                           <div>
                             <p className="text-gray-500 text-sm">Message</p>

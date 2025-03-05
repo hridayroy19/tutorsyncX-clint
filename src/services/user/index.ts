@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // get all products
 
+
+
 export const getAllUser = async () => {
     try {
         const res = await fetch(
@@ -24,3 +26,31 @@ export const getAllUser = async () => {
         return { success: false, message: error.message };
     }
 };
+
+
+export const updateUser = async (userData: any, userEmail: string): Promise<any> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}api/user/${userEmail}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+  
+      if (!res.ok) {
+        throw new Error(`Failed to update user: ${res.statusText}`);
+      }
+  
+      // Read the response body as JSON
+      const responseData = await res.json(); // This reads the body of the response
+  
+      return responseData;
+    } catch (error: any) {
+      return Promise.reject(error.message || "Something went wrong");
+    }
+  };
+  

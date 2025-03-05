@@ -17,9 +17,6 @@ const TutorsCard = ({ tutor }: { tutor: ITutors }) => {
     return <p>Loading...</p>; // Display a loading message or spinner
   }
 
-
-
-
   return (
     <div className=" lg:w-[300px] w-[350px] rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6] mx-4">
       <div className="w-full h-48 relative">

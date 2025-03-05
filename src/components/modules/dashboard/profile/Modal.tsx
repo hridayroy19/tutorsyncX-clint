@@ -24,8 +24,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { updateUser } from "@/services/user";
+import { useUser } from "@/context/UserContext";
+import { toast } from "sonner";
+import { useEffect, useState } from "react";
 
 export default function EditProfile() {
+  const user = useUser();
+  console.log(user?.email);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
+
   const form = useForm({
     defaultValues: {
       photo: "",
@@ -49,8 +63,47 @@ export default function EditProfile() {
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Form Data:", data);
+    // console.log("Form Data:", data);
+
+    if (!user?.email) {
+      console.error("User email is missing!");
+      return;
+    }
+
+    try {
+      const userData = {
+        bio: data.bio,
+        name: data.name,
+        phone: data.phone,
+        salary: data.salary,
+        availableDays: data.availableDays,
+        tuitionStyle: data.tuitionStyle,
+        experience: data.experience,
+        subject: data.subject,
+        rating: data.rating,
+        class: data.class,
+        location: data.location,
+        PreferredTeach: data.PreferredTeach,
+        photo: data.photo, // If it's a URL or Base64 string
+      };
+
+      const response = await updateUser(userData, user?.email);
+
+      // console.log(response,"dataaaaaa")
+      if (response.result) {
+        toast.success(response.message);
+      } else {
+        toast.error("Failed to update profile.");
+      }
+      console.log("User updated successfully!", response);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
+
+  if (loading) {
+    return <p className="text-center py-5">Loading user data...</p>;
+  }
 
   return (
     <Dialog>
@@ -183,7 +236,7 @@ export default function EditProfile() {
                 name="bio"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Bio</FormLabel>
                     <FormControl>
                       <textarea
                         className="h-16 resize-none w-full border border-gray-300 rounded-md p-2"

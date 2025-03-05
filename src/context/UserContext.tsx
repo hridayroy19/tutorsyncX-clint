@@ -11,6 +11,7 @@ import {
 } from "react";
 
 interface IUserProviderValues {
+  email: string | null;
   user: IUser | null;
   isLoading: boolean;
   setUser: (user: IUser | null) => void;
@@ -33,10 +34,16 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     handleUser();
   }, [isLoading]);
 
-
-
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>
+    <UserContext.Provider
+      value={{
+        email: user?.email || null,
+        user,
+        setUser,
+        isLoading,
+        setIsLoading,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
