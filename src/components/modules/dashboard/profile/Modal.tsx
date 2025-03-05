@@ -28,19 +28,19 @@ import {
 export default function EditProfile() {
   const form = useForm({
     defaultValues: {
-      name: "",
       photo: "",
+      bio: "",
+      name: "",
       phone: "",
-      experience: "",
-      description: "",
-      class: "",
       salary: "",
-      available_days_per_week: "",
-      tuition_style: "",
+      availableDays: "",
+      tuitionStyle: "",
+      experience: "",
       subject: "",
       rating: 4.8,
+      class: "",
       location: "",
-      Preferred_Area_to_Teach: "",
+      PreferredTeach: "",
     },
   });
 
@@ -135,7 +135,7 @@ export default function EditProfile() {
               />
               <FormField
                 control={form.control}
-                name="Preferred_Area_to_Teach"
+                name="PreferredTeach"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Preferred Area to Teach</FormLabel>
@@ -151,7 +151,7 @@ export default function EditProfile() {
             <div className="flex justify-between items-center mt-3 ">
               <FormField
                 control={form.control}
-                name="tuition_style"
+                name="tuitionStyle"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Tuition Style</FormLabel>
@@ -180,7 +180,7 @@ export default function EditProfile() {
 
               <FormField
                 control={form.control}
-                name="description"
+                name="bio"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Description</FormLabel>
@@ -252,7 +252,7 @@ export default function EditProfile() {
               />
               <FormField
                 control={form.control}
-                name="available_days_per_week"
+                name="availableDays"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Available Days Per Week</FormLabel>

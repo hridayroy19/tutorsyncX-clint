@@ -2,7 +2,9 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Modal from "./Modal";
 
-const Herosection = () => {
+
+const Herosection =  () => {
+
   return (
     <div className="container border-b shadow mx-auto md:px-4 px-2 py-10 ">
       <div className="grid grid-cols-1 px-5 md:grid-cols-2  items-start text-center md:text-left">

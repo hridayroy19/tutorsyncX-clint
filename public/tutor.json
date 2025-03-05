@@ -1,18 +1,19 @@
 [
   {
-    "id": 1,
-    "name": "Rahim Uddin",
-    "phone": "017xxxxxxxx",
-    "salary": "5000 BDT",
-    "tuition": "Available",
-    "available_days_per_week": 5,
-    "tuition_style": "Offline",
-    "experience": "2 years",
-    "subject": ["Mathematics", "Physics"],
-    "rating": 4.8,
-    "class": "9-10",
-    "location": "Dhaka",
-    "Preferred_Area_to_Teach": "Dhanmondi, Mohammadpur"
+    "photo":"",
+    "bio":"",
+    "name": "",
+    "phone": "",
+    "salary": "",
+    "tuition": "",
+    "availableDays": 5,
+    "tuition_style": "",
+    "experience": "",
+    "subject": "",
+    "rating": ,
+    "class": "",
+    "location": "",
+    "PreferredTeach": ""
   },
   {
     "id": 2,

@@ -11,40 +11,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
-
-interface Tutor {
-  id: number;
-  name: string;
-  phone: string;
-  salary: string;
-  tuition: string;
-  available_days_per_week: number;
-  tuition_style: string;
-  experience: string;
-  subject: string[];
-  rating: number;
-  class: string;
-  location: string;
-  Preferred_Area_to_Teach: string;
-}
+import { getAllUser } from "@/services/user";
+import { ITutors } from "@/types";
 
 const FindTutors = () => {
-  const [tutorsData, setTutorsData] = useState<Tutor[]>([]);
-  const [filteredTutors, setFilteredTutors] = useState<Tutor[]>([]);
+  const [tutorsData, setTutorsData] = useState<ITutors[]>([]);
+  console.log(tutorsData, "server data");
+  const [filteredTutors, setFilteredTutors] = useState<ITutors[]>([]);
   const [filters, setFilters] = useState({
     subject: "",
     rating: "",
     price: "",
     location: "",
   });
+  console.log(filters)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/tutor.json");
-        const data = await response.json();
-        setTutorsData(data);
-        setFilteredTutors(data);
+        const response = await getAllUser(); // Await API call
+
+        if (response.status) {
+          // Check if response is successful
+          setTutorsData(response.result);
+          setFilteredTutors(response.result);
+        } else {
+          console.error("Failed to fetch users:", response.message);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -74,9 +67,12 @@ const FindTutors = () => {
       let locationMatch = true;
 
       if (fSubject && fSubject !== "All") {
-        subjectMatch = tutor.subject.some((sub) =>
-          sub.toLowerCase().includes(fSubject.toLowerCase().replace(" ", ""))
-        );
+        if (fSubject && fSubject !== "All") {
+          subjectMatch = tutor.subject
+            ?.toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(fSubject.toLowerCase().replace(/\s+/g, ""));
+        }
       }
 
       if (fRating) {
@@ -199,7 +195,7 @@ const FindTutors = () => {
       <div className=" grid grid-cols-4 gap-7 justify-center">
         {filteredTutors.length > 0 ? (
           filteredTutors.map((tutor) => (
-            <TutorsCard key={tutor.id} tutor={tutor} />
+            <TutorsCard key={tutor._id} tutor={tutor} />
           ))
         ) : (
           <p>No tutors found with the applied filters</p>
