@@ -23,10 +23,10 @@ const BlogSection = () => {
   }, []);
 
   return (
-    <div className="w-full px-24 container mx-auto">
+    <div className="w-full lg:px-24 md:px-14 px-8 container mx-auto">
       <h1 className="text-3xl font-medium mt-10">Latest Blog Posts</h1>
       {blog.map((blog) => (
-        <div key={blog?.id} className="mt-10 w-[750px]">
+        <div key={blog?.id} className="mt-10 lg:w-[750px]">
           <h1 className="text-2xl mb-1 font-medium">{blog.title}</h1>
           <p className=" mb-4 text-gray-600">{blog.date}</p>
           <p className="text-gray-700">{blog.description}</p>

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const AboutUs = () => {
   return (
-    <div className="container mx-auto px-16 py-12 ">
+    <div className="container mx-auto md:px-16 px-8 py-12 ">
       {/* Hero Section */}
       <div className="max-w-3xl  mb-12">
         <h1 className="text-4xl font-bold">আমাদের সম্পর্কে</h1>
