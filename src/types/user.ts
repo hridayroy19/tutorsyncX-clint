@@ -1,6 +1,7 @@
 export interface IUser {
-    email: string;
+    email: string ;
     role: "student" | "tutor";
     iat?: number;
     exp?: number;
+    id?:string
   }

@@ -1,6 +1,11 @@
 "use client";
 
+import { useUser } from "@/context/UserContext";
+
 const FaqSection = () => {
+  const user = useUser()
+  console.log(user)
+
   return (
     <div className="container w-full mx-auto  lg:px-24 md:px-10 px-4  py-14">
       <h1 className="text-center lg:text-4xl text-2xl mb-7">
