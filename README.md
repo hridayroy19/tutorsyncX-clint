@@ -44,5 +44,5 @@ To set up the Tutor Website locally, follow these steps:
    ```bash
    git clone https://github.com/hridayroy19/tutorsyncX-clint.git
 
-   npm Inastall
+   npm Install
    ```
