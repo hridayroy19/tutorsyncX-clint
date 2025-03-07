@@ -66,7 +66,7 @@ export const getStudentRequst = async (userId: string) => {
       }
     );
     const data = await res.json();
-    console.log(data.result, "main data")
+    console.log(data.result, "main data fetc")
     return data.result; // Return the response data
   } catch (error: any) {
     return { status: false, message: error.message }; // Return error message if failed
