@@ -47,7 +47,5 @@ export const config = {
         "/profile",
         "/tutors/:path*",
         "/student/:path*",
-        "/findTutors",
-        "/findTutors/:path*",
     ],
 };
