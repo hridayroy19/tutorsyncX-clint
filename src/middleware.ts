@@ -6,9 +6,8 @@ type Role = keyof typeof roleBasedPrivateRoutes;
 const authRoutes = ["/login", "/register",];
 
 const roleBasedPrivateRoutes = {
-    tutor: [/^\/tutor/ ],
+    tutor: [/^\/tutor/],
     student: [/^\/student/, /^\/profile/]
-
 
 };
 
@@ -23,7 +22,8 @@ export const middleware = async (request: NextRequest) => {
         } else {
             return NextResponse.redirect(
                 new URL(
-                    `http://localhost:3000/login?redirectPath=${pathname}`,
+                    `https://tutorsyncx-clint-site.vercel.app/login?redirectPath=${pathname}`,
+                    // `http://localhost:3000/login?redirectPath=${pathname}`,
                     request.url
                 )
             );
@@ -40,11 +40,12 @@ export const middleware = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/", request.url));
 };
 
+
 export const config = {
     matcher: [
         "/login",
         "/profile",
-        "/tutors/:path*", 
+        "/tutors/:path*",
         "/student/:path*",
     ],
 };

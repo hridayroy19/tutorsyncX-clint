@@ -10,42 +10,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import { loginUser } from "@/services/AuthService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { loginSchema } from "./loginValidation";
 import { useUser } from "@/context/UserContext";
-
-
+import { loginSchema } from "./loginValidation";
 const LoginForm = () => {
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirectPath");
-  const router = useRouter();
-  const {setIsLoading} = useUser()
+  const { setIsLoading } = useUser();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
-      setIsLoading(true)
+      setIsLoading(true);
       console.log(res);
 
       if (res?.success) {
         toast.success(res?.message);
-        router.push("/");
-        if (redirect) {
-          router.push(redirect);
-        } else {
-          router.push("/");
-        }
       } else {
         toast.error(res?.message);
       }
@@ -54,11 +41,6 @@ const LoginForm = () => {
     }
     console.log(data);
   };
-
-
-
-
-
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">

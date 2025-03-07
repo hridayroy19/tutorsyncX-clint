@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
-import { sendTutorRequest } from "@/services/sendTutorRequest";
+import { TutorRequest } from "@/services/sendTutorRequest";
 import { ITutors } from "@/types";
 // import { ITutors } from "@/types";
 import { MessageCircle } from "lucide-react";
@@ -14,14 +14,13 @@ const ProfileSection = ({ tutor }: { tutor: ITutors | null }) => {
   if (!tutor) {
     return <p>Loading tutor data...</p>;
   }
-  console.log(tutor, "one tutor");
 
   const handleRequest = async () => {
     try {
       if (user?.email) {
         setRequestStatus("pending");
-        const response = await sendTutorRequest(tutor?._id, user.email);
-
+        const response = await TutorRequest(tutor?._id, user.email);
+        // console.log(response ,"reeee")
         if (response.status) {
           toast.success("Request sent successfully!");
           setRequestStatus("sent");
@@ -29,13 +28,9 @@ const ProfileSection = ({ tutor }: { tutor: ITutors | null }) => {
           toast.error("All ready request!");
           setRequestStatus(null);
         }
-      } else {
-        alert("User email not available.");
-      }
+      } 
     } catch (error) {
       console.error(error);
-      alert("Failed to send request. Please try again.");
-      setRequestStatus(null);
     }
   };
 

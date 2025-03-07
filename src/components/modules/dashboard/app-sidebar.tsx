@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Home, Inbox, Send, Settings } from "lucide-react";
+import { Calendar, DollarSign, Home, Inbox, Send, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -27,6 +27,7 @@ const studentItems = [
   { title: "Dashboard", url: "/student/dashboard", icon: Home },
   { title: "Profile", url: "/student/profile", icon: Inbox },
   { title: "MY Request", url: "/student/myrequest", icon: Calendar },
+  { title: "Payment", url: "/student/payment", icon:DollarSign },
   { title: "Home", url: "/", icon: Home },
 ];
 

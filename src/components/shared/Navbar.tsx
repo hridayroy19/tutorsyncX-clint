@@ -35,7 +35,6 @@ const Navbar = () => {
     }
   };
 
-  // ✅ Dynamically 
   const dashboardUrl =
     user?.role === "student"
       ? "/student/dashboard"

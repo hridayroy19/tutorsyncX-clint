@@ -18,7 +18,7 @@ import { ITutors } from "@/types";
 
 const StudentRequest = () => {
   const user = useUser();
-  const [requests, setRequests] = useState<ITutors[]>([]);
+  const [requests, setRequests] = useState<ITutors | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -54,15 +54,9 @@ const StudentRequest = () => {
           setLoading(false);
           return;
         }
-
         const tutorRequests = await getStudentRequst(tutorId);
-        console.log("Tutor Request Response:", tutorRequests);
-
-        if (tutorRequests.status) {
-          setRequests(tutorRequests.result ? [tutorRequests.result] : []);
-        } else {
-          setError("No tutor requests found.");
-        }
+        console.log("Tutor Request Responssssssse:", tutorRequests);
+        setRequests(tutorRequests);
       } catch (error: any) {
         toast.error("Failed to fetch requests.");
         console.error("Fetch Error:", error);
@@ -75,16 +69,60 @@ const StudentRequest = () => {
     fetchRequests();
   }, [user?.email]);
 
+  // Function to handle payment
+  const handlePayment = async (request: ITutors) => {
+    try {
+      // Prepare the payment data
+      const paymentData = {
+        userEmail: user?.email,
+        tutorData: {
+          tutorId: request._id,
+          name: request.name,
+          salary: request.salary,
+          subject: request.subject,
+        },
+      };
+
+      // Send the payment data to the backend
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}api/payment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paymentData),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        const paymentUrl = data.url;
+
+        if (paymentUrl) {
+          window.location.href = paymentUrl;
+        } else {
+          toast.error("Payment page URL not returned.");
+        }
+      } else {
+        toast.error(`Error: ${data.message || "Something went wrong"}`);
+      }
+    } catch (error) {
+      toast.error("Failed to process payment.");
+      console.error("Payment Error:", error);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-3xl text-center text-orange-400 mb-10">
         My Requests
       </h1>
 
-      {/* Loading indicator */}
       {loading && <p className="text-center text-blue-500">Loading...</p>}
 
-      {/* Error message */}
       {error && <p className="text-center text-red-500">{error}</p>}
 
       {/* Table */}
@@ -102,30 +140,31 @@ const StudentRequest = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {/* If there are requests, map through and display them */}
-            {requests.length > 0 ? (
-              requests.map((request) => (
-                <TableRow key={request._id}>
-                  <TableCell className="font-medium">{request.name}</TableCell>
-                  <TableCell>{request.salary}</TableCell>
-                  <TableCell>{request._id}</TableCell>
-                  <TableCell className="text-right">{request.email}</TableCell>
-                  <TableCell className="text-right">{request.class}</TableCell>
-                  <TableCell className="text-right">
-                    {request.subject}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button>Payment</Button>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={7} className="text-center">
-                  No requests found.
-                </TableCell>
-              </TableRow>
-            )}
+            <TableRow>
+              <TableCell className="font-medium">
+                {requests?.name ?? "N/A"}
+              </TableCell>
+              <TableCell>{requests?.salary ?? "N/A"}</TableCell>
+              <TableCell>{requests?._id ?? "N/A"}</TableCell>
+              <TableCell className="text-right">
+                {requests?.email ?? "N/A"}
+              </TableCell>
+              <TableCell className="text-right">
+                {requests?.class ?? "N/A"}
+              </TableCell>
+              <TableCell className="text-right">
+                {requests?.subject ?? "N/A"}
+              </TableCell>
+              <TableCell className="text-right">
+                {requests ? (
+                  <Button onClick={() => handlePayment(requests)}>
+                    Payment
+                  </Button>
+                ) : (
+                  <span className="text-gray-500">N/A</span>
+                )}
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </div>

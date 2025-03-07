@@ -30,7 +30,6 @@ const FindTutors = () => {
     const fetchData = async () => {
       try {
         const response = await getAllUser(); // Await API call
-
         if (response.status) {
           // Check if response is successful
           setTutorsData(response.result);

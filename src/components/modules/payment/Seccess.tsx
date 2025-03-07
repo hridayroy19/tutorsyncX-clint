@@ -1,7 +1,13 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
-const SeccessCard = () => {
+interface SeccessCardProps {
+  tranId: string | string[];
+}
+const SeccessCard = ({ tranId }: SeccessCardProps) => {
+  console.log(tranId, "payment id");
   return (
     <div className="py-10">
       <div className="mx-auto py-10 p-8 max-w-md bg-green-100 border border-green-500 rounded-md text-center">
@@ -22,14 +28,18 @@ const SeccessCard = () => {
           processed.
         </div>
         <h1 className="text-teal-600 font-medium ">
-          Transection Id: 1212121211
+          Transection Id: 1{tranId}
         </h1>
+        <Link href="/">
+          <Button className=" mt-7 text-orange-500 bg-white"> Home </Button>
+        </Link>
         <div className="w-full mt-4 flex justify-center">
           <Image
-            src="https://i.ibb.co.com/VmX711W/images-removebg-preview.png"
-            width={100}
-            height={100}
+            src="https://i.ibb.co.com/tP87HQk9/Tutorsync-X-Logo-250x150-removebg-preview.png"
+            width={200}
+            height={300}
             alt="logo"
+            className="bg-cover"
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ export const getAllUser = async () => {
       `${process.env.NEXT_PUBLIC_BASE_API}api/user`,
       {
         next: {
-          tags: ["USER"], // Next.js caching tag
+          tags: ["USER"]
         },
       }
     );
@@ -17,7 +17,7 @@ export const getAllUser = async () => {
     }
 
     const data = await res.json();
-    console.log("Fetched Users:", data);
+    // console.log("Fetched Users:", data);
     return data;
   } catch (error: any) {
     console.error("Error fetching users:", error.message);
@@ -53,8 +53,8 @@ export const updateUser = async (userData: any, userEmail: string): Promise<any>
 };
 
 
-
 export const getStudentRequst = async (userId: string) => {
+  console.log(userId, "iddd")
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}api/user/get/${userId}`,
@@ -65,7 +65,8 @@ export const getStudentRequst = async (userId: string) => {
       }
     );
     const data = await res.json();
-    return data; // Return the response data
+    console.log(data.result, "main data")
+    return data.result; // Return the response data
   } catch (error: any) {
     return { status: false, message: error.message }; // Return error message if failed
   }
