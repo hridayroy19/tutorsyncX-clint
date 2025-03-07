@@ -22,8 +22,8 @@ export const middleware = async (request: NextRequest) => {
         } else {
             return NextResponse.redirect(
                 new URL(
-                    // `https://tutorsyncx-clint-site.vercel.app/login?redirectPath=${pathname}`,
-                    `http://localhost:3000/login?redirectPath=${pathname}`,
+                    `https://tutorsync-x-clint.vercel.app/login?redirectPath=${pathname}`,
+                    // `http://localhost:3000/login?redirectPath=${pathname}`,
                     request.url
                 )
             );
@@ -47,5 +47,7 @@ export const config = {
         "/profile",
         "/tutors/:path*",
         "/student/:path*",
+        "/findTutors",
+        "/findTutors/:path*",
     ],
 };
