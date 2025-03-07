@@ -55,6 +55,7 @@ export const updateUser = async (userData: any, userEmail: string): Promise<any>
 
 export const getStudentRequst = async (userId: string) => {
   console.log(userId, "iddd")
+  
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}api/user/get/${userId}`,
