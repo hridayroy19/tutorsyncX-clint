@@ -16,7 +16,7 @@ export const registerUser = async (data: FieldValues) => {
         }
 
         const result = await res.json();
-        console.log(result);
+        // console.log(result);
         return result;
     } catch (error) {
         console.error("Registration Error:", error);

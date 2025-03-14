@@ -1,3 +1,4 @@
+import ShowReview from "@/components/modules/findTutor/tutorsInfo/ShowReview";
 import ProfileSection from "@/components/modules/findTutor/tutorsInfo/TutorsInfoSection";
 import TutorsProfile from "@/components/modules/findTutor/tutorsProfile/TutorsProfile";
 import { getStudentRequst } from "@/services/user";
@@ -23,6 +24,9 @@ const Detailspage = async ({
         />
         <ProfileSection tutor={tutor} />
       </div>
+      <div className="container mx-auto p-4">
+      <ShowReview tutorId={tutor._id} />
+    </div>
     </div>
   );
 };

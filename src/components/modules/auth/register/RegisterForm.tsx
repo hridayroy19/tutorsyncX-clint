@@ -193,9 +193,9 @@ const RegisterForm = () => {
               </form>
             </Form>
             <p className="text-gray-600 text-center mt-7">
-              If you are not registered, please{" "}
+              If you are  registered, please
               <Link href="/login" className="text-orange-500 font-semibold">
-                Register
+                Login
               </Link>
             </p>
           </CardContent>

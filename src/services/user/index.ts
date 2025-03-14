@@ -54,8 +54,6 @@ export const updateUser = async (userData: any, userEmail: string): Promise<any>
 
 
 export const getStudentRequst = async (userId: string) => {
-  console.log(userId, "iddd")
-  
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}api/user/get/${userId}`,
@@ -66,7 +64,7 @@ export const getStudentRequst = async (userId: string) => {
       }
     );
     const data = await res.json();
-    console.log(data.result, "main data fetc")
+    // console.log(data.result, "main data fetc")
     return data.result; // Return the response data
   } catch (error: any) {
     return { status: false, message: error.message }; // Return error message if failed
