@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <div className=" bg-background w-full sticky top-0 z-10">
       <div className="bg-gradient-to-bl  shadow-md w-full">
-        <div className="container py-5 mx-auto md:px-14 px-6 flex justify-between items-center ">
+        <div className="container py-5 mx-auto md:px-10 px-6 flex justify-between items-center ">
           <Link href="/">
             <h1 className="text-2xl text-[#ac0ed4e5] font-extrabold font-serif">
               TutorsyncX

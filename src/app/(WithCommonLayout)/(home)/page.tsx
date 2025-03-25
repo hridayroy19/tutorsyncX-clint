@@ -2,6 +2,7 @@
 import Counter from "@/components/modules/home/counter/Counter";
 import Herosection from "@/components/modules/home/herosection/Herosection";
 import PopularTutor from "@/components/modules/home/herosection/PopularTutor";
+import AppSchener from "@/components/modules/home/playstore/AppSchener";
 import Testimonials from "@/components/modules/home/testimonials/Testimonials";
 // import FindSubjcet from "@/components/modules/home/subjcet/FindSubjcet";
 import Trusted from "@/components/modules/home/trusted/Trusted";
@@ -22,6 +23,7 @@ export default function HomePage() {
      
       <WhyChooseUs/>
       <Testimonials/>
+      <AppSchener/>
     </div>
   );
 }

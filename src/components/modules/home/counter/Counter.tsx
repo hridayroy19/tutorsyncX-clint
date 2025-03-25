@@ -1,16 +1,17 @@
 import { Users, Sigma, Video, Package } from "lucide-react";
+import CountUp from "react-countup";
 
 const stats = [
   {
     id: 1,
     icon: <Users className="w-8 h-8 text-white" />,
-    value: "204,223",
+    value: "204223",
     label: "Registered Tutors",
   },
   {
     id: 2,
     icon: <Sigma className="w-8 h-8 text-white" />,
-    value: "340,345",
+    value: "3404",
     label: "Total Applications",
   },
   {
@@ -22,7 +23,7 @@ const stats = [
   {
     id: 4,
     icon: <Package className="w-8 h-8 text-white" />,
-    value: "267,010",
+    value: "2674",
     label: "Total Stakeholders",
   },
 ];
@@ -30,7 +31,7 @@ const stats = [
 const Counter = () => {
   return (
     <section className="bg-gray-50 py-20">
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat) => (
             <div
@@ -39,7 +40,9 @@ const Counter = () => {
             >
               <div className="bg-[#ac0ed49c] p-3 rounded-lg">{stat.icon}</div>
               <div>
-                <h2 className="text-2xl font-bold">{stat.value}</h2>
+                <h2 className="text-2xl font-bold">
+                  <CountUp start={0} end={Number(stat.value)} duration={5} />
+                </h2>
                 <p className="text-gray-600">{stat.label}</p>
               </div>
             </div>
