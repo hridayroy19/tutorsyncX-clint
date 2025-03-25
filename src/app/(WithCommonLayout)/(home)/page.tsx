@@ -1,4 +1,5 @@
 "use client";
+import Counter from "@/components/modules/home/counter/Counter";
 import Herosection from "@/components/modules/home/herosection/Herosection";
 import PopularTutor from "@/components/modules/home/herosection/PopularTutor";
 import Testimonials from "@/components/modules/home/testimonials/Testimonials";
@@ -8,15 +9,19 @@ import TuitionTypes from "@/components/modules/home/TuitionTypes/TuitionTypes";
 import WhyChooseUs from "@/components/modules/home/whyChoiosUs/WhyChooseUs";
 
 export default function HomePage() {
+
   return (
     <div className="">
       <Herosection />
-      <Trusted />
+      <Counter/>
+      {/* <Trusted /> */}
+      <TuitionTypes />
       <PopularTutor />
       {/* <FindSubjcet /> */}
-      <TuitionTypes />
-      <WhyChooseUs />
-      <Testimonials />
+     
+     
+      <WhyChooseUs/>
+      <Testimonials/>
     </div>
   );
 }

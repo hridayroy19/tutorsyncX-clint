@@ -31,11 +31,11 @@ const TuitionTypes = () => {
   return (
     <div>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-center lg:text-4xl text-2xl font-medium text-gray-700">
+        <h1 className="text-start lg:text-4xl text-2xl font-medium ">
           {" "}
           Tuition Types
         </h1>
-        <p className="text-center lg:text-2xl text-xl text-gray-700 mt-3 mb-10">
+        <p className="text-start lg:text-2xl text-xl  mt-3 mb-10">
           Find the Best Tuition Type which suits you most
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
