@@ -7,7 +7,7 @@ const TuitionTypes = () => {
       title: "Home Tutoring",
       description:
         "Looking for one-to-one classes? Learn at home with personalized teaching tailored to your needs.",
-      bgColor: "bg-orange-100",
+      bgColor: "bg-gay-100",
       image:
         "https://i.ibb.co.com/7NXX4pY5/165667673931855cute-little-boy-study-with-father-home-together-removebg-preview.png",
     },
@@ -15,7 +15,7 @@ const TuitionTypes = () => {
       title: "Online Tutoring",
       description:
         "Get connected with expert tutors from anywhere and take interactive online classes with ease.",
-      bgColor: "bg-green-100",
+      bgColor: "bg-gay-100",
       image:
         "https://i.ibb.co.com/21K2CW15/4b9d5dd1-35e2-4389-a7c6-bffa33dcbd4b-removebg-preview.png",
     },
@@ -23,7 +23,7 @@ const TuitionTypes = () => {
       title: "Group Tutoring",
       description:
         "Enjoy a collaborative learning experience with peers while keeping tuition fees affordable.",
-      bgColor: "bg-purple-100",
+      bgColor: "bg-gay-100",
       image:
         "https://i.ibb.co.com/RGLKjV6G/165665874841939students-and-teacher1-removebg-preview-removebg-preview.png",
     },
@@ -34,7 +34,7 @@ const TuitionTypes = () => {
       {/* Title Section */}
       <div className="text-center">
         <h1 className="text-3xl lg:text-4xl font-bold text-[#2A2B2C]">
-        Service <span className="text-[#ac0ed4c5]">Categories</span>
+          Service <span className="text-[#ac0ed4c5]">Categories</span>
         </h1>
         <p className="mt-3 text-lg text-gray-700">
           Find the best tuition type that suits you best.

@@ -8,8 +8,8 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left  */}
         <div>
-          <h2 className="text-2xl font-bold text-orange-500">
-            Tutor<span className="text-green-500">SyncX</span>.com
+          <h2 className="text-2xl font-bold text-black">
+            Tutor<span className="text-[#ac0ed4e5]">SyncX</span>
           </h2>
           <p className="mt-4 text-sm">
             TutorSheba.com is a platform where parents, students and tutors can
@@ -18,7 +18,7 @@ const Footer = () => {
             better in exams.
           </p>
           <div className="flex gap-4 mt-4">
-            <Link href="#">
+            <Link href="">
               <Facebook className="w-6 h-6 text-blue-600" />
             </Link>
             <Link href="#">
