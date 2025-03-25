@@ -1,9 +1,13 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { getAllUser } from "@/services/user";
 import { ITutors } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const PopularTutor = () => {
   const [tutorsData, setTutorsData] = useState<ITutors[]>([]);
@@ -29,6 +33,18 @@ const PopularTutor = () => {
     fetchData();
   }, []);
 
+  // Slider Settings
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+    centerMode: false,
+  };
+
   if (loading) {
     return (
       <div className="text-center mt-16">
@@ -42,13 +58,13 @@ const PopularTutor = () => {
       <h1 className="text-center lg:text-4xl text-2xl font-medium ">
         Our Popular<span className="text-[#ac0ed4e5]"> Tutors</span>
       </h1>
-      <p className="text-center lg:text-xl text-xl text-gray-800 mt-3 mb-10">
+      <p className="text-center lg:text-xl text-xl text-gray-800 mt-3 mb-2">
         Here are few of the Verified Teachers
       </p>
       <div className="flex justify-end mb-7">
         <Button className="px-4 py-1 bg-[#ac0ed4e5]  text-sm">View More</Button>
       </div>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-5">
+      <Slider {...settings} className="container mx-auto px-4 overflow-hidden">
         {tutorsData?.map((tutor) => (
           <div
             key={tutor._id}
@@ -86,7 +102,7 @@ const PopularTutor = () => {
             </div>
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

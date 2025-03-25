@@ -8,7 +8,7 @@ import Image from "next/image";
 const testimonials = [
   {
     id: 1,
-    name: "Redwan Rahman",
+    name: "Hridoy Chandra Roy",
     title: "North South University\nTutor",
     image: "https://i.ibb.co/XGZX7sM/image-1.png",
     quote:
@@ -16,7 +16,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Debasish Bokshi",
+    name: "Krishna Bokshi",
     title: "Assistant Professor\nParent",
     image: "https://i.ibb.co.com/CQhr0qv/download-3.jpg",
     quote:
@@ -51,7 +51,7 @@ export default function Testimonials() {
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto text-center">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        Stakeholders <span className="text-[#ac0ed4e5]">Statements</span> About
+      What People <span className="text-[#ac0ed4e5]">Say</span> About
         Us
       </h2>
 

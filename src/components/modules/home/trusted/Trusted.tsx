@@ -5,7 +5,7 @@ const Trusted = () => {
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-16 flex flex-col lg:flex-row-reverse items-center justify-between gap-5">
         {/* Left Side Content */}
-        <div className="w-full max-w-lg text-center lg:text-left">
+        <div data-aos="fade-left"  data-aos-duration="50000"  className="w-full max-w-lg text-center lg:text-left">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
             Trusted by Parents & Teachers
           </h1>
@@ -32,7 +32,7 @@ const Trusted = () => {
         </div>
 
         {/* Right Side Image */}
-        <div className="w-full max-w-md">
+        <div data-aos="fade-right"  data-aos-duration="4000" className="w-full  max-w-md">
           <Image
             src="https://i.ibb.co.com/Rkd0qpQt/Apply-Availability.png"
             width={500}

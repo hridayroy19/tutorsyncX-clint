@@ -15,12 +15,9 @@ export default function HomePage() {
     <div className="">
       <Herosection />
       <Counter/>
-    
       <TuitionTypes />
       <PopularTutor />
-      {/* <FindSubjcet /> */}
       <Trusted />
-     
       <WhyChooseUs/>
       <Testimonials/>
       <AppSchener/>

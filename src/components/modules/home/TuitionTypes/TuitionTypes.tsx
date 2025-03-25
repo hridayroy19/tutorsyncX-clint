@@ -1,7 +1,18 @@
+"use client"
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TuitionTypes = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        once: true, 
+        easing: "ease-in-out",
+      });
+    }, []);
+
   const cards = [
     {
       title: "Home Tutoring",
@@ -45,6 +56,8 @@ const TuitionTypes = () => {
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         {cards.map((card, index) => (
           <div
+          data-aos="fade-up"
+     data-aos-duration="4000"
             key={index}
             className={`${card.bgColor} rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:shadow-xl hover:scale-105`}
           >
