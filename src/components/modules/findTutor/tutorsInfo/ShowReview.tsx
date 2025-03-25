@@ -23,7 +23,8 @@ const ShowReview = ({ tutorId }: ReviewProps) => {
 
       try {
         const response = await fetch(
-          `https://tutors-server-site.vercel.app/api/review/${tutorId}`
+          // `https://tutors-server-site.vercel.app/api/review/${tutorId}`
+          `http://localhost:5000/api/review/${tutorId}`
         );
 
         if (!response.ok) {

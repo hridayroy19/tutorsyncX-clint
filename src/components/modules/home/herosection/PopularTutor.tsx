@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const PopularTutor = () => {
   const [tutorsData, setTutorsData] = useState<ITutors[]>([]);
+  console.log(tutorsData);
   const [loading, setLoading] = useState<boolean>(true); // Loading state
 
   useEffect(() => {
@@ -32,7 +33,6 @@ const PopularTutor = () => {
     return (
       <div className="text-center mt-16">
         <p>Loading Tutors...</p>{" "}
-        {/* You can customize this with a spinner or animation */}
       </div>
     );
   }
@@ -49,17 +49,19 @@ const PopularTutor = () => {
         <Button className="px-2 py-1 bg-orange-500 text-sm">View More</Button>
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-5">
-        {tutorsData.map((tutor) => (
+        {tutorsData?.map((tutor) => (
           <div
             key={tutor._id}
             className="lg:w-[300px] w-[350px] rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6] mx-4"
           >
             <div className="w-full h-48 relative">
               <Image
-                src={tutor?.photo} // Update this path to your image
+                src={tutor?.photo?.trim() || "/fallback-image.jpg"}
                 alt="img"
-                layout="fill"
-                objectFit="cover"
+                width={500}
+                height={500}
+                style={{ objectFit: "cover" }}
+                unoptimized
               />
             </div>
             <div className="px-4 py-4">

@@ -2,38 +2,38 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Modal from "./Modal";
 
-
-const Herosection =  () => {
-
+const Herosection = () => {
   return (
-    <div className="container border-b shadow mx-auto md:px-4 px-2 py-10 ">
-      <div className="grid grid-cols-1 px-5 md:grid-cols-2  items-start text-center md:text-left">
-        <div className=" lg:w-[700px] md:w-[500] w-full">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            <span className="text-orange-600"> Best</span> Tutoring Platform
+    <div className="container mx-auto px-5 md:px-12  border-b shadow">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left gap-10">
+        {/* Left Section - Text Content */}
+        <div className="max-w-2xl mx-auto md:mx-0 space-y-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            <span className="text-[#ac0ed4d5]">Best</span> Tutoring Platform
+            <br />
+            <span>for Home & Online Tuitions</span>
           </h1>
-          <h2 className=" text-4xl md:text-6xl font-bold leading-tight">
-            for Home & Online Tuitions
-          </h2>
-          <p className="mt-5 flex gap-2 items-center text-gray-600 text-2xl">
-            <span>
-              <MapPin />
-            </span>
+
+          <p className="flex gap-2 items-center text-gray-600 text-lg md:text-xl">
+            <MapPin className="text-[#ac0ed4d5]" />
             Find the Right Tutor in Your Area
           </p>
+
+          {/* Call to Action Button / Modal */}
           <div>
             <Modal />
           </div>
         </div>
 
-        {/* Image Section */}
+        {/* Right Section - Image */}
         <div className="flex justify-center">
           <Image
             src="https://i.ibb.co/d4fNR8Qx/lesson-concept-illustration-114360-7937-1-removebg-preview.png"
             alt="Tutoring"
-            width={350}
+            width={450}
             height={500}
-            className="lg:max-w-full h-auto"
+            className="max-w-full h-auto object-contain"
+            priority
           />
         </div>
       </div>
