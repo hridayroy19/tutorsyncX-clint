@@ -14,11 +14,11 @@ export default function HomePage() {
     <div className="">
       <Herosection />
       <Counter/>
-      {/* <Trusted /> */}
+    
       <TuitionTypes />
       <PopularTutor />
       {/* <FindSubjcet /> */}
-     
+      <Trusted />
      
       <WhyChooseUs/>
       <Testimonials/>

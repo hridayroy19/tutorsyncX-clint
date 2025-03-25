@@ -30,26 +30,27 @@ export default function Testimonials() {
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto text-center">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        Stakeholders <span className="text-green-600">Statements</span> About Us
+        Stakeholders <span className="text-[#ac0ed4e5]">Statements</span> About
+        Us
       </h2>
       <div className="mt-12 grid gap-8 md:grid-cols-3">
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
-            className="bg-white shadow-lg p-6 rounded-lg relative text-left"
+            className="bg-white border shadow-lg p-6 rounded-lg relative text-left"
           >
-            <div className="absolute -top-8 left-6 text-green-600 text-6xl">
-              “
-            </div>
             <div className="flex flex-col items-center text-center">
+              <div className="absolute  left-6 text-[#ac0ed4e5] text-6xl">
+                “
+              </div>
               <Image
                 src={testimonial.image}
                 alt={testimonial.name}
-                width={80}
-                height={80}
-                className="rounded-full border-4 border-white shadow-lg"
+                width={70}
+                height={70}
+                className="rounded-full"
               />
-              <h3 className="mt-4 text-lg font-bold text-green-600">
+              <h3 className="mt-4 text-lg font-bold text-[#ac0ed4be]">
                 {testimonial.name}
               </h3>
               <p className="text-sm text-gray-600 whitespace-pre-line">

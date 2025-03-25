@@ -2,34 +2,47 @@ import Image from "next/image";
 
 const Trusted = () => {
   return (
-    <div className="w-full py-10 mt-14 container mx-auto px-4">
-      <div className="flex flex-col lg:flex-row justify-around items-center gap-10">
-        <div className="w-full max-w-sm flex justify-center">
+    <section className="bg-gray-50 py-16">
+      <div className="container mx-auto px-16 flex flex-col lg:flex-row-reverse items-center justify-between gap-5">
+        {/* Left Side Content */}
+        <div className="w-full max-w-lg text-center lg:text-left">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+            Trusted by Parents & Teachers
+          </h1>
+          <p className="text-gray-600 mt-4 text-lg leading-relaxed">
+            MyTutor is the UK’s most trusted tutoring platform by parents. We
+            are rated{" "}
+            <span className="font-semibold text-gray-900">4.96/5</span> by
+            students and parents from the
+            <span className="font-semibold text-gray-900">
+              {" "}
+              3.8 million+{" "}
+            </span>{" "}
+            lessons we’ve delivered so far.
+          </p>
+          <p className="mt-4 text-gray-600 text-lg leading-relaxed">
+            And because our tutors get such good results, schools use them to
+            support their teaching. We work with
+            <span className="font-semibold text-gray-900">
+              {" "}
+              1,500+ schools{" "}
+            </span>
+            across the UK, helping teens achieve their goals.
+          </p>
+        </div>
+
+        {/* Right Side Image */}
+        <div className="w-full max-w-md">
           <Image
-            src="https://i.ibb.co.com/Gv5FPZxK/1716195695-F-I-1-removebg-preview.png"
+            src="https://i.ibb.co.com/Rkd0qpQt/Apply-Availability.png"
             width={500}
             height={400}
-            alt="banner"
-            className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-none"
+            alt="Affiliate Partner"
+            className="w-full object-cover"
           />
         </div>
-        <div className="w-full max-w-lg text-center lg:text-left">
-          <h1 className="text-3xl sm:text-4xl font-semibold mb-6">
-            Trusted by parents & teachers
-          </h1>
-          <p className="text-base sm:text-lg">
-            MyTutor is the UK most trusted tutoring platform by parents. We are
-            rated 4.96/5 by students and parents from the 3.8 million (and
-            counting!) lessons we’ve delivered so far.
-          </p>
-          <p className="mt-4 text-base sm:text-lg">
-            And because our tutors get such good results, schools use them to
-            support their teaching. We work with 1500 across the UK, targeting
-            learning gaps and helping teens everywhere achieve their goals.
-          </p>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
