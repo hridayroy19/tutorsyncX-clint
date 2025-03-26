@@ -4,118 +4,175 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const AboutUs = () => {
-  return (
-    <div className="container mx-auto md:px-16 px-8 py-12 ">
-      {/* Hero Section */}
-      <div className="max-w-3xl  mb-12">
-        <h1 className="text-4xl font-bold">আমাদের সম্পর্কে</h1>
-        <p className="mt-4 text-lg text-gray-600">
-          আমাদের লক্ষ্য শিক্ষার্থীদের দক্ষ টিউটরদের সাথে সংযুক্ত করা, যাতে তারা
-          উন্নত শিক্ষার সুযোগ পায়।
-        </p>
-      </div>
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Hridoy Chandra Roy",
+      role: "Founder & CEO",
+      image:
+        "https://i.ibb.co.com/rFSYnXb/20230409234326-IMG-7354-removebg-removebg-preview.png",
+    },
+    {
+      id: 2,
+      name: "Zeo Lix",
+      role: "Head of Operations",
+      image:
+        "https://i.ibb.co/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg",
+    },
+    {
+      id: 3,
+      name: "Zeo Lix",
+      role: "Head of Operations",
+      image:
+        "https://i.ibb.co/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg",
+    },
+    {
+      id: 4,
+      name: "Zeo Lix",
+      role: "Head of Operations",
+      image:
+        "https://i.ibb.co/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg",
+    },
+  ];
 
-      {/* Team Section */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">আমাদের টিম</h2>
-        <div className="flex flex-wrap justify-center gap-6">
-          <Card className="w-60 p-1 shadow-lg">
-            <Image
-              src="https://i.ibb.co.com/rFSYnXb/20230409234326-IMG-7354-removebg-removebg-preview.png"
-              height={400}
-              alt="images"
-              width={500}
-            />
-            <CardContent>
-              <h3 className="font-medium mt-1">Hridoy Chandra Roy</h3>
-              <p className="text-gray-500  py-2 text-sm">Founder & CEO</p>
-            </CardContent>
-          </Card>
-          <Card className="w-60 p-1 shadow-lg">
-            <Image
-              src="https://i.ibb.co.com/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg"
-              height={400}
-              alt="image"
-              width={500}
-            />
-            <CardContent>
-              <h3 className="font-medium mt-1">Zeo lix </h3>
-              <p className="text-gray-500 py-2 text-sm">Head of Operations</p>
-            </CardContent>
-          </Card>
+  return (
+    <div className=" ">
+      <div className=" bg-[#ac0ed4e1] opacity-80 text-white text-center py-16">
+        <div className="text-start px-20">
+          <h2 className="text-3xl font-bold">Our Company</h2>
+          <div className="mt-4 text-5xl font-serif">
+            <span className="text-white">tutor</span>
+            <span className="text-yellow-400">.com</span>
+          </div>
+          <p className="mt-2 text-lg">
+            A Service of <span className="font-bold">The Princeton Review</span>
+            <span className="inline-block w-3 h-3 bg-yellow-400 ml-1" />
+          </p>
         </div>
       </div>
+      {/* text section */}
+      <div className="py-16 md:px-20 px-10 mb-12">
+        <div className="max-w-3xl ">
+          <h1 className="text-4xl font-bold">Our Beliefs</h1>
+          <p className="mt-4 text-lg text-gray-800">
+            At TutorsyncX, we believe that every student deserves a personal
+            tutor, and we are dedicated to promoting equity, opportunity, and
+            achievement for all learners. To that end, we partner with colleges
+            and universities, K–12 schools and districts, public and state
+            libraries, employee benefits programs, and various organizations to
+            provide 24/7, on-demand tutoring and homework help in more than 250
+            subjects. Our mission is to instill hope, advance equity, and
+            catalyze achievement in schools and communities. We do this by
+            providing encouraging, empowering, and effective academic and
+            professional support for learners of all ages and stages—from
+            kindergarten through college, graduate school, career, and
+            continuing education. Over more than two decades of supporting
+            students, educators, school leaders, and families, we have helped
+            institutions increase student success and retention rates, and
+            learners become more confident in their studies. Our learner
+            satisfaction rates remain consistently high: 97% of post-session
+            survey respondents would recommend TutorsyncX to a friend, and 98%
+            are glad their institution offers TutorsyncX. The feeling is mutual.
+            We are honored to partner with institutions and organizations to
+            help them scale the human connection and provide personalized
+            support—anytime, anywhere.
+          </p>
+        </div>
 
-      {/* Success Stories */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">সফলতার গল্প</h2>
-        <p className="text-gray-600 max-w-2xl ">
-          অনেক শিক্ষার্থী আমাদের প্ল্যাটফর্ম ব্যবহার করে তাদের আদর্শ টিউটর খুঁজে
-          পেয়েছে এবং আরও উন্নত শিক্ষা গ্রহণ করছে।
-        </p>
-        <h1 className="mt-5 text-3xl text-orange-400">কৃষ্ণ রায় গল্প :</h1>
-        <p className="mt-3">
-         কৃষ্ণ চন্দ্র রায় ঢাকার এক ছাত্র, যে সবসময় গণিত বুঝতে সমস্যায় পড়ত। স্কুলে ভালো
-          ফলাফল করতে না পারার হতাশা থেকে, সে TutorLink-এর মাধ্যমে এক অভিজ্ঞ গণিত
-          শিক্ষকের সন্ধান পায়। মাত্র ৩ মাসের মধ্যেই তার রেজাল্ট নাটকীয়ভাবে
-          উন্নতি করে এবং সে এসএসসি পরীক্ষায় এ+ অর্জন করে!
-          <br />
-          <span className="mt-2 text-lg">
-            {" "}
-            <br /> কৃষ্ণ রায় ভাষায়
-          </span>
-          : <br /> আগে গণিত আমার কাছে একটা দুঃস্বপ্নের মতো ছিল। কিন্তু আমার
-          টিউটরের সাহায্যে আমি আত্মবিশ্বাস ফিরে পেয়েছি। TutorLink আমার শিক্ষা
-          জীবনে আশীর্বাদস্বরূপ!
-        </p>
+        {/* Team Section */}
+        <div className="mb-12 pt-10">
+          <h2 className="text-2xl font-semibold mb-6">Our Team</h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            {teamMembers.map((member) => (
+              <Card key={member.id} className="w-60 h-[275px] p-1 shadow-lg">
+                <Image
+                  src={member.image}
+                  height={400}
+                  width={500}
+                  alt={member.name}
+                  className="h-[180px] object-contain"
+                />
+                <CardContent>
+                  <h3 className="font-medium mt-1">{member.name}</h3>
+                  <p className="text-gray-500 py-2 text-sm">{member.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
 
-        <h1 className="mt-5 text-3xl text-orange-400">মেহেদীর স্যার গল্প :</h1>
-        <p className="mt-3">
-          মেহেদী স্যার একজন দক্ষ ইংরেজি শিক্ষক, কিন্তু তিনি তার যোগ্যতা অনুযায়ী
-          শিক্ষার্থী পাচ্ছিলেন না। TutorLink-এ যোগ দেওয়ার পর, তিনি দেশের
-          বিভিন্ন প্রান্ত থেকে শিক্ষার্থী পেতে শুরু করেন।
-          <br />
-          এখন তার অনলাইন ক্লাস এত জনপ্রিয় হয়েছে যে, তিনি একজন ফুল-টাইম অনলাইন
-          শিক্ষক হিসেবে ক্যারিয়ার গড়েছেন! তার কথায়:
-          <br />
-          <span className="mt-2 text-lg">
-            {" "}
-            <br /> মেহেদীর ভাষায়
-          </span>
-          : <br /> আগে ভাবতাম, শুধু কোচিং সেন্টারেই ভালো পড়ানো যায়। কিন্তু
-          TutorLink আমাকে দেখিয়েছে যে, অনলাইনে পড়িয়েও আমি হাজারো শিক্ষার্থীকে
-          সাহায্য করতে পারি।
-        </p>
+        {/* Success Stories */}
+        <div className="mb-12">
+          <h2 className="text-4xl text-[#ac0ed4e5] font-semibold mb-6">
+            Success Stories
+          </h2>
+          <p className="text-gray-600 max-w-2xl ">
+            Many students have used our platform to find their ideal tutors and
+            receive better education.
+          </p>
+          <h1 className="mt-5 text-3xl ">Krishna Roy’s Story :</h1>
+          <p className="mt-3">
+            Krishna Chandra Roy, a student from Dhaka, always struggled with
+            mathematics. Frustrated with poor academic performance, he found an
+            experienced math tutor through TutorLink. Within just three months,
+            his results improved dramatically, and he achieved an A+ in the SSC
+            exam!
+            <br />
+            <span className="mt-2 text-lg">
+              {" "}
+              <br /> In Krishna Roy’s words:
+            </span>
+            : <br /> Math used to be a nightmare for me. But with my tutor’s
+            help, I regained confidence. TutorLink has been a blessing in my
+            educational journey!
+          </p>
+
+          <h1 className="mt-5 text-3xl ">Mehedi Sir’s Story :</h1>
+          <p className="mt-3">
+            Mehedi Sir was a skilled English teacher, but he was struggling to
+            find students who matched his expertise. After joining TutorLink, he
+            started getting students from different parts of the country.
+            <br />
+            Now, his online classes have become so popular that he has built a
+            full-time career as an online teacher!
+            <br />
+            <span className="mt-2 text-lg">
+              {" "}
+              <br /> In Mehedi’s words:
+            </span>
+            : <br /> I used to think that only coaching centers could provide
+            good teaching opportunities. But TutorLink has shown me that I can
+            help thousands of students by teaching online.
+          </p>
+        </div>
+
+        {/* Vision */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6">Our Future Plans</h2>
+          <p className="text-gray-600 max-w-2xl ">
+            We aim to connect more students and tutors and integrate new
+            technologies into our platform to enhance the learning experience.
+          </p>
+        </div>
+
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6">🏆 Our Achievements</h2>
+          <p className="text-gray-600 max-w-2xl ">
+            5,000+ teachers have found their ideal students.
+          </p>
+          <p className="text-gray-600 max-w-2xl ">
+            95% of students reported improved exam results.
+          </p>
+          <p className="text-gray-600 max-w-2xl ">
+            90% of teachers said they have benefited financially.
+          </p>
+        </div>
+
+        {/* Call to Action */}
+        <Button className="mt-6 bg-[#ac0ed4e5] text-white px-6 py-3 text-lg rounded-lg">
+          Learn More About Us
+        </Button>
       </div>
-
-      {/* Vision */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">
-          আমাদের ভবিষ্যৎ পরিকল্পনা
-        </h2>
-        <p className="text-gray-600 max-w-2xl ">
-          আমরা আরও বেশি শিক্ষার্থী এবং টিউটরদের সংযুক্ত করতে চাই, এবং আমাদের
-          প্ল্যাটফর্মে নতুন প্রযুক্তির সংযোজন করতে চাই।
-        </p>
-      </div>
-
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">🏆 আমাদের অর্জন</h2>
-        <p className="text-gray-600 max-w-2xl ">
-          ৫,০০০+ শিক্ষক তাদের পছন্দের শিক্ষার্থী পেয়েছেন
-        </p>
-        <p className="text-gray-600 max-w-2xl ">
-          ৯৫% শিক্ষার্থী বলেছেন, তারা তাদের পরীক্ষায় ভালো ফল করেছে
-        </p>
-        <p className="text-gray-600 max-w-2xl ">
-          ৯০% শিক্ষক বলছেন, তারা অর্থনৈতিকভাবে লাভবান হয়েছেন
-        </p>
-      </div>
-
-      {/* Call to Action */}
-      <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-lg rounded-lg">
-        আমাদের সম্পর্কে আরও জানুন
-      </Button>
     </div>
   );
 };

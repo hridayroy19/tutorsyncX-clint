@@ -25,8 +25,11 @@ export default function WhyChooseUs() {
         <div className="grid grid-cols-2 gap-6 mt-10 ">
           {features.map((feature, index) => (
             <div
-
-            data-aos="zoom-in-right"            key={index}
+              data-aos="flip-left"
+              data-aos-delay="1000"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000"
+              key={index}
               className="flex flex-col items-center bg-white shadow-lg rounded-xl p-6"
             >
               <div className="w-12 h-12 flex items-center justify-center bg-green-100 text-[#ac0ed4e5] rounded-full mb-3">

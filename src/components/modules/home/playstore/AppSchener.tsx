@@ -4,7 +4,8 @@ const AppSchener = () => {
   return (
     <section className="bg-gray-50 py-10 px-4 md:px-8">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between ">
-        <div className="bg-white p-8 rounded-lg  flex-1">
+        <div data-aos="fade-down-right"  data-aos-delay="500"
+    data-aos-duration="2000" className="bg-white p-8 rounded-lg  flex-1">
           <h2 className="text-3xl font-bold mb-8 text-green-600 ">
             Download App
           </h2>
@@ -42,7 +43,8 @@ const AppSchener = () => {
         </div>
 
         {/* Right Image */}
-        <div className="">
+        <div data-aos="fade-up-left" data-aos-delay="500"
+    data-aos-duration="2000" className="">
           <Image
             src="https://i.ibb.co.com/0p80vZ9P/screen-2-removebg-preview.png"
             alt="Mobile App Preview"
