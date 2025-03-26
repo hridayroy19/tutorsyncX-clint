@@ -8,7 +8,7 @@ import Providers from "@/providers/Providers";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], 
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +25,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} font-poppins antialiased`}>
         <Providers>
-          <Toaster richColors position="top-right" />
+          <Toaster
+            richColors
+            toastOptions={{
+              style: {
+                background: "#ffff",
+                color: "#ac0ed4e5",
+              },
+            }}
+            position="top-right"
+          />
           {children}
         </Providers>
       </body>

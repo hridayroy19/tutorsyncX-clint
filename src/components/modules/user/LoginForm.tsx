@@ -18,7 +18,9 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useUser } from "@/context/UserContext";
 import { loginSchema } from "./loginValidation";
+import { useRouter } from "next/navigation";
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
@@ -30,17 +32,18 @@ const LoginForm = () => {
       const res = await loginUser(data);
       setIsLoading(true);
       console.log(res);
-
-      if (res?.success) {
-        toast.success(res?.message);
+      if (res?.token) {
+        toast.success("Login successful! Redirecting to Home...");
+        setTimeout(() => router.push("/"), 2000);
       } else {
         toast.error(res?.message);
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error(error);
+      toast.error("Something went wrong. Please try again.");
     }
-    console.log(data);
   };
+
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">

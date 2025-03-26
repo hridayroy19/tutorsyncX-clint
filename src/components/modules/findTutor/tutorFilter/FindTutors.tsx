@@ -24,7 +24,7 @@ const FindTutors = () => {
     price: "",
     location: "",
   });
-  console.log(filters)
+  console.log(filters);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -34,16 +34,16 @@ const RegisterForm = () => {
     try {
       const res = await registerUser(data);
       console.log(res);
-      if (res?.success) {
-        toast.success(res?.message);
-        router.push("/login");
+      if (res?.data) {
+        toast.success("Registration successful! Redirecting to login...");
+        setTimeout(() => router.push("/login"), 2000);
       } else {
         toast.error(res?.message);
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error(error);
+      toast.error("Something went wrong. Please try again.");
     }
-    console.log(data);
   };
 
   return (
