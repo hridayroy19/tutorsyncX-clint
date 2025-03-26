@@ -4,17 +4,16 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const TutorsCard = ({ tutor }: { tutor: ITutors }) => {
-  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (tutor) {
-      setLoading(false); // Set loading to false when tutor data is available
+      setLoading(false);
     }
   }, [tutor]);
 
   if (loading) {
-    return <p>Loading...</p>; // Display a loading message or spinner
+    return <p>Loading...</p>; 
   }
 
   return (
@@ -29,7 +28,7 @@ const TutorsCard = ({ tutor }: { tutor: ITutors }) => {
       </div>
       <div className="px-4 py-4">
         <div className="font-bold text-lg mb-2">{tutor?.name}</div>
-        <p className="text-gray-700 text-base">{tutor.bio}</p>
+        <p className="text-gray-700 text-base">{tutor.bio.slice(0,60)}..</p>
         <div className="w-full border border-gray-700 mt-2"></div>
       </div>
       <div className="px-6 flex justify-between pt-2 pb-2">
@@ -42,7 +41,7 @@ const TutorsCard = ({ tutor }: { tutor: ITutors }) => {
       </div>
       <div className="px-6 mt-3 mb-2 w-full pb-4">
         <Link href={`/findTutors/${tutor?._id}`}>
-          <button className="bg-orange-500 w-full hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-[#ac0ed4e8] 00 w-full hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
             View Details
           </button>
         </Link>

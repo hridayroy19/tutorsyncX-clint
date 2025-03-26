@@ -8,12 +8,14 @@ export interface IRequest {
   tutorId: string;
   userEmail: string;
   __v: number;
+  status: string;
 }
 
 const StudentRequestForm = () => {
   const user = useUser();
   const tutorId = user?.id;
   const [requests, setRequests] = useState<IRequest[]>([]);
+  console.log(requests);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,17 +34,15 @@ const StudentRequestForm = () => {
     const fetchRequests = async () => {
       try {
         setLoading(true);
-        setError(null); // Clear error before fetching
-
+        setError(null);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_API}api/requests/get-requests/${tutorId}`
         );
         const data = await response.json();
-
         if (data.status) {
           setRequests(data.data);
         } else {
-          setError(data.message); // Show error if data.status is false
+          setError(data.message);
         }
       } catch (error) {
         console.error(error);
@@ -55,8 +55,32 @@ const StudentRequestForm = () => {
     fetchRequests();
   }, [tutorId, user]);
 
+  const deleteData = async (id: string) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}api/requests/request-delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const result = await response.json();
+      if (result.status) {
+        toast.success("Request deleted successfully.");
+        setRequests((prevRequests) =>
+          prevRequests.filter((request) => request._id !== id)
+        );
+      } else {
+        toast.error(result.message || "Failed to delete request.");
+      }
+    } catch (error) {
+      console.error("Error deleting request:", error);
+      toast.error("An error occurred while deleting.");
+    }
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto p-4 bg-white rounded-lg">
       <h1 className="text-2xl font-bold text-center">Request Form</h1>
 
       {/* Loading State */}
@@ -78,9 +102,18 @@ const StudentRequestForm = () => {
                     </h3>
                     <p className="text-gray-600">Request message</p>
                   </div>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                    Accept
-                  </button>
+                  <div className="flex gap-5 items-center">
+                    <button
+                      onClick={() => deleteData(request._id)}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                    >
+                      Delete
+                    </button>
+
+                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                      {request?.status}
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

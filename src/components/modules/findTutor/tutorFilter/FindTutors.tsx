@@ -16,7 +16,6 @@ import { ITutors } from "@/types";
 
 const FindTutors = () => {
   const [tutorsData, setTutorsData] = useState<ITutors[]>([]);
-  console.log(tutorsData, "server data");
   const [filteredTutors, setFilteredTutors] = useState<ITutors[]>([]);
   const [filters, setFilters] = useState({
     subject: "",
@@ -24,14 +23,16 @@ const FindTutors = () => {
     price: "",
     location: "",
   });
-  console.log(filters);
+console.log(filters)
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [tutorsPerPage] = useState(6);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllUser(); // Await API call
+        const response = await getAllUser();
         if (response.status) {
-          // Check if response is successful
           setTutorsData(response.result);
           setFilteredTutors(response.result);
         } else {
@@ -44,6 +45,10 @@ const FindTutors = () => {
 
     fetchData();
   }, []);
+
+  if (!tutorsData) {
+    return <p>loading ...</p>;
+  }
 
   const applyFilter = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,12 +71,10 @@ const FindTutors = () => {
       let locationMatch = true;
 
       if (fSubject && fSubject !== "All") {
-        if (fSubject && fSubject !== "All") {
-          subjectMatch = tutor.subject
-            ?.toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(fSubject.toLowerCase().replace(/\s+/g, ""));
-        }
+        subjectMatch = tutor.subject
+          ?.toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(fSubject.toLowerCase().replace(/\s+/g, ""));
       }
 
       if (fRating) {
@@ -89,6 +92,7 @@ const FindTutors = () => {
           .toLowerCase()
           .includes(fLocation.toLowerCase());
       }
+
       return subjectMatch && ratingMatch && locationMatch;
     });
 
@@ -110,97 +114,143 @@ const FindTutors = () => {
     }
 
     setFilteredTutors(filtered);
+    setCurrentPage(1); // Reset to the first page after applying filters
   };
 
+  // Get current tutors per page
+  const indexOfLastTutor = currentPage * tutorsPerPage;
+  const indexOfFirstTutor = indexOfLastTutor - tutorsPerPage;
+  const currentTutors = filteredTutors.slice(
+    indexOfFirstTutor,
+    indexOfLastTutor
+  );
+
+  // Handle page navigation
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredTutors.length / tutorsPerPage);
+
   return (
-    <div>
-      <div className="mb-16 border w-full mx-auto container">
-        <form
-          className="p-4 bg-white shadow-md rounded-lg flex flex-col gap-4 md:flex-row md:items-center"
-          onSubmit={applyFilter}
-        >
-          <Select name="subject">
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Select Subject" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="All">All</SelectItem>
-              <SelectItem value="Mathematics">Mathematics</SelectItem>
-              <SelectItem value="Physics">Physics</SelectItem>
-              <SelectItem value="English">English</SelectItem>
-              <SelectItem value="Biology">Biology</SelectItem>
-              <SelectItem value="Chemistry">Chemistry</SelectItem>
-              <SelectItem value="Higher Math">Higher Math</SelectItem>
-              <SelectItem value="Bangla">Bangla</SelectItem>
-              <SelectItem value="General Science">General Science</SelectItem>
-              <SelectItem value="Accounting">Accounting</SelectItem>
-              <SelectItem value="Economics">Economics</SelectItem>
-            </SelectContent>
-          </Select>
+    <>
+      {" "}
+      <div className="flex md:flex-row flex-col justify-between py-10 items-start">
+        <div className="mb-16 border md:w-[300px] w-full mx-auto">
+          <form
+            className="p-4 bg-white flex flex-col gap-5 shadow-md rounded-lg"
+            onSubmit={applyFilter}
+          >
+            <Select name="subject">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Subject" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="All">All</SelectItem>
+                <SelectItem value="Mathematics">Mathematics</SelectItem>
+                <SelectItem value="Physics">Physics</SelectItem>
+                <SelectItem value="English">English</SelectItem>
+                <SelectItem value="Biology">Biology</SelectItem>
+                <SelectItem value="Chemistry">Chemistry</SelectItem>
+                <SelectItem value="Higher Math">Higher Math</SelectItem>
+                <SelectItem value="Bangla">Bangla</SelectItem>
+                <SelectItem value="General Science">General Science</SelectItem>
+                <SelectItem value="Accounting">Accounting</SelectItem>
+                <SelectItem value="Economics">Economics</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Select name="rating">
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Rating" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="5">5 Stars</SelectItem>
-              <SelectItem value="4">4+ Stars</SelectItem>
-              <SelectItem value="3">3+ Stars</SelectItem>
-            </SelectContent>
-          </Select>
+            <Select name="rating">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Rating" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5">5 Stars</SelectItem>
+                <SelectItem value="4">4+ Stars</SelectItem>
+                <SelectItem value="3">3+ Stars</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Select name="price">
-            <SelectTrigger className="w-full md:w-40">
-              <SelectValue placeholder="Price" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="hightolow">High To Low</SelectItem>
-              <SelectItem value="lowtohigh">Low To High</SelectItem>
-            </SelectContent>
-          </Select>
+            <Select name="price">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Price" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="hightolow">High To Low</SelectItem>
+                <SelectItem value="lowtohigh">Low To High</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Input
-            type="text"
-            placeholder="Location"
-            className="w-full md:w-40"
-            name="location"
-          />
-
-          <div className="relative flex items-center justify-center">
-            <motion.div
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.6, 0, 0.6],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
-              className="absolute w-32 h-32 border-4 border-teal-400 rounded-full opacity-50"
+            <Input
+              type="text"
+              placeholder="Location"
+              className="w-full"
+              name="location"
             />
 
-            {/* Main Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative px-6 py-3 text-white bg-gradient-to-r from-purple-500 to-indigo-700 rounded-full shadow-lg"
-            >
-              Apply Filter →
-            </motion.button>
-          </div>
-        </form>
-      </div>
+            <div className="relative flex items-center justify-center">
+              <motion.div
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.6, 0, 0.6],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                }}
+                className="absolute w-32 h-32 border-4 border-teal-400 rounded-full opacity-50"
+              />
 
-      <div className=" grid grid-cols-4 gap-7 justify-center">
-        {filteredTutors.length > 0 ? (
-          filteredTutors.map((tutor) => (
-            <TutorsCard key={tutor._id} tutor={tutor} />
-          ))
-        ) : (
-          <p>No tutors found with the applied filters</p>
-        )}
+              {/* Main Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative px-6 py-3 text-white bg-gradient-to-r from-purple-500 to-indigo-700 rounded-full shadow-lg"
+              >
+                Apply Filter →
+              </motion.button>
+            </div>
+          </form>
+        </div>
+
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-7 justify-center">
+          {currentTutors.length > 0 ? (
+            currentTutors.map((tutor) => (
+              <TutorsCard key={tutor._id} tutor={tutor} />
+            ))
+          ) : (
+            <p>No tutors found with the applied filters</p>
+          )}
+        </div>
       </div>
-    </div>
+      {/* Pagination */}
+      <div className="flex justify-center mt-6 space-x-2">
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-2 border rounded disabled:opacity-50"
+        >
+          &lt;
+        </button>
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={`px-3 py-2 border rounded ${
+              currentPage === index + 1 ? "bg-orange-500 text-white" : ""
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-2 border rounded disabled:opacity-50"
+        >
+          &gt;
+        </button>
+      </div>
+    </>
   );
 };
 

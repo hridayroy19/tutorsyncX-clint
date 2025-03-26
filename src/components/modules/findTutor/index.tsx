@@ -3,20 +3,17 @@ import React from "react";
 
 const TutorsFindBanner = () => {
   return (
-    <div>
-      <section className="flex flex-col md:flex-row items-center justify-between bg-orange-100 px-20 rounded-2xl shadow-lg">
+    <div className="w-full bg-[#ac0ed4ad] ">
+      <section className="flex flex-col md:flex-row items-center justify-between  px-20 rounded-2xl shadow-lg">
         {/* Text Section */}
         <div className="md:w-1/2 text-center md:text-left">
-          <h1 className="text-4xl font-bold text-blue-900">
+          <h1 className="text-4xl font-bold text-white">
             Find the Best Tutors for Your Needs
           </h1>
-          <p className="mt-4 text-lg text-gray-700">
+          <p className="mt-4 text-lg text-white">
             Browse experienced tutors, filter by subject & rating, and book your
             session in just a few clicks!
           </p>
-          {/* <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition">
-            Find Tutors
-          </button> */}
         </div>
 
         {/* Image Section */}
@@ -26,6 +23,7 @@ const TutorsFindBanner = () => {
             alt="Find Tutors"
             width={400}
             height={200}
+            className="w-[300px]"
           />
         </div>
       </section>

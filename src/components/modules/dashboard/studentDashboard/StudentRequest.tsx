@@ -19,6 +19,7 @@ import { ITutors } from "@/types";
 const StudentRequest = () => {
   const user = useUser();
   const [requests, setRequests] = useState<ITutors | null>(null);
+  console.log(requests)
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,7 +35,7 @@ const StudentRequest = () => {
         setLoading(true);
 
         const studentData = await getStudentRequsts(userEmail);
-        console.log("Student Data Response:", studentData);
+        // console.log("Student Data Response:", studentData);
 
         if (
           !studentData.status ||
@@ -55,7 +56,7 @@ const StudentRequest = () => {
           return;
         }
         const tutorRequests = await getStudentRequst(tutorId);
-        console.log("Tutor Request Responssssssse:", tutorRequests);
+        // console.log("Tutor Request Responssssssse:", tutorRequests);
         setRequests(tutorRequests);
       } catch (error: any) {
         toast.error("Failed to fetch requests.");

@@ -81,7 +81,12 @@ const PopularTutor = () => {
         Here are a few of the Verified Teachers
       </p>
       <div className="flex justify-end mb-7">
-        <Button className="px-4 py-1 bg-[#ac0ed4e5] text-sm">View More</Button>
+        <Link href="/findTutors">
+          {" "}
+          <Button className="px-4 py-1 bg-[#ac0ed4e5] text-sm">
+            View More
+          </Button>
+        </Link>
       </div>
       <Slider {...settings} className="container mx-auto px-4 overflow-hidden">
         {tutorsData?.map((tutor) => (
@@ -101,7 +106,9 @@ const PopularTutor = () => {
             </div>
             <div className="px-4 py-4">
               <div className="font-bold text-lg mb-2">{tutor?.name}</div>
-              <p className="text-gray-700 text-base">{tutor.bio}</p>
+              <p className="text-gray-700 text-base">
+                {tutor.bio.slice(0, 60)}
+              </p>
               <div className="w-full border border-gray-700 mt-2"></div>
             </div>
             <div className="px-6 flex justify-between pt-2 pb-2">

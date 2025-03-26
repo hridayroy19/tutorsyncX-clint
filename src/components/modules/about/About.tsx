@@ -21,17 +21,17 @@ const AboutUs = () => {
     },
     {
       id: 3,
-      name: "Zeo Lix",
-      role: "Head of Operations",
+      name: "John Doe",
+      role: "Marketing Director",
       image:
-        "https://i.ibb.co/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg",
+        "https://i.ibb.co.com/C3LMFzK6/images-8.jpg",
     },
     {
       id: 4,
-      name: "Zeo Lix",
-      role: "Head of Operations",
+      name: "Jane Smith",
+      role:"Chief Technology Officer",
       image:
-        "https://i.ibb.co/tmRS5Lq/premium-photo-1682089789852-e3023ff6df24.jpg",
+        "https://i.ibb.co.com/DD56yNR9/26ef2dfe-b661-4a77-8f90-26cbf96b2a3c.jpg",
     },
   ];
 
@@ -90,7 +90,7 @@ const AboutUs = () => {
                   height={400}
                   width={500}
                   alt={member.name}
-                  className="h-[180px] object-contain"
+                  className="h-[180px] w-full object-contain"
                 />
                 <CardContent>
                   <h3 className="font-medium mt-1">{member.name}</h3>
