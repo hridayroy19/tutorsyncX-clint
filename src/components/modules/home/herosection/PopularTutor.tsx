@@ -11,7 +11,6 @@ import Slider from "react-slick";
 
 const PopularTutor = () => {
   const [tutorsData, setTutorsData] = useState<ITutors[]>([]);
-  console.log(tutorsData);
   const [loading, setLoading] = useState<boolean>(true); // Loading state
 
   useEffect(() => {
@@ -43,32 +42,52 @@ const PopularTutor = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     centerMode: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   if (loading) {
     return (
       <div className="text-center mt-16">
-        <p>Loading Tutors...</p>{" "}
+        <p>Loading Tutors...</p>
       </div>
     );
   }
 
   return (
     <div className="mt-16 container mx-auto w-full px-4">
-      <h1 className="text-center lg:text-4xl text-2xl font-medium ">
+      <h1 className="text-center lg:text-4xl text-2xl font-medium">
         Our Popular<span className="text-[#ac0ed4e5]"> Tutors</span>
       </h1>
       <p className="text-center lg:text-xl text-xl text-gray-800 mt-3 mb-2">
-        Here are few of the Verified Teachers
+        Here are a few of the Verified Teachers
       </p>
       <div className="flex justify-end mb-7">
-        <Button className="px-4 py-1 bg-[#ac0ed4e5]  text-sm">View More</Button>
+        <Button className="px-4 py-1 bg-[#ac0ed4e5] text-sm">View More</Button>
       </div>
       <Slider {...settings} className="container mx-auto px-4 overflow-hidden">
         {tutorsData?.map((tutor) => (
           <div
             key={tutor._id}
-            className="lg:w-[300px] border w-[350px] rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6] mx-4"
+            className="lg:w-[300px] sm:w-[300px] h-[435px] w-[350px] mx-auto rounded-lg overflow-hidden shadow-lg bg-[#ffffffb6] mb-4"
           >
             <div className="w-full p-2 h-48 relative">
               <Image
@@ -95,7 +114,7 @@ const PopularTutor = () => {
             </div>
             <div className="px-6 mt-3 mb-2 w-full pb-4">
               <Link href={`/findTutors/${tutor?._id}`}>
-                <button className="bg-[#ac0ed4cb] w-full  text-white font-bold py-2 px-4 rounded">
+                <button className="bg-[#ac0ed4cb] w-full text-white font-bold py-2 px-4 rounded">
                   View Details
                 </button>
               </Link>

@@ -30,7 +30,7 @@ const stats = [
 
 const Counter = () => {
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 py-10">
       <div className="container mx-auto px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat) => (

@@ -37,10 +37,30 @@ const Futures = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="w-full mx-auto container px-16">
+    <div className="w-full mx-auto container md:px-16 px-10">
       <h1 className=" text-center text-4xl mb-14 font-bold "> Featured</h1>
       <div className="slider-container">
         <Slider {...settings}>

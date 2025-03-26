@@ -15,7 +15,7 @@ const Herosection = () => {
     });
   }, []);
   return (
-    <div className="container mx-auto px-5 md:px-12  border-b shadow">
+    <div className="container mx-auto px-5 md:px-12 lg:mt-2 md:mt-10  border-b shadow">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left gap-10">
        {/* left */}
         <div data-aos="fade-right" className="max-w-2xl mx-auto md:mx-0 space-y-6">
@@ -29,7 +29,7 @@ const Herosection = () => {
             <MapPin className="text-[#ac0ed4d5]" />
             Find the Right Tutor in Your Area
           </p>
-          <div>
+          <div className="md:mb-4 lg:mb-1">
             <Modal />
           </div>
         </div>

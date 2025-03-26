@@ -49,7 +49,7 @@ const settings = {
 
 export default function Testimonials() {
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto text-center">
+    <section className="py-16 px-8 max-w-7xl mx-auto text-center">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
       What People <span className="text-[#ac0ed4e5]">Say</span> About
         Us
@@ -58,7 +58,7 @@ export default function Testimonials() {
       <div className="mt-10 ">
         <Slider {...settings} className="px-2">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="px-2 relative">
+            <div key={testimonial.id} className="px-2 h-[370px] relative">
               <div className="bg-white shadow-lg border border-gray-200 p-6 rounded-xl h-full flex flex-col justify-between items-center text-center transition-all hover:shadow-2xl">
                 <div className="text-[#ac0ed4e5] absolute left-6 text-6xl">
                   “

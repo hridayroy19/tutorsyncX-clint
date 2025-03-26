@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 w-full justify-between px-8">
+      <div className="grid md:grid-cols-2 grid-cols-1 w-full justify-between px-8">
         <div className="grid grid-cols-2 gap-6 mt-10 ">
           {features.map((feature, index) => (
             <div

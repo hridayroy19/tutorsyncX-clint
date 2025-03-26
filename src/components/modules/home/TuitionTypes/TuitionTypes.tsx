@@ -41,7 +41,7 @@ const TuitionTypes = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-8">
+    <div className="container mx-auto px-10 py-8">
       {/* Title Section */}
       <div className="text-center">
         <h1 className="text-3xl lg:text-4xl font-bold text-[#2A2B2C]">
@@ -53,7 +53,7 @@ const TuitionTypes = () => {
       </div>
 
       {/* Card Grid */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {cards.map((card, index) => (
           <div
           data-aos="fade-up"
