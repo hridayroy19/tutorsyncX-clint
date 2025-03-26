@@ -44,26 +44,20 @@ const LoginForm = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-b from-orange-50 to-white p-4">
-        {/* Left Section  */}
+        {/* Left   */}
         <div className="md:w-1/2 text-center md:text-left space-y-4">
-          <h2 className="text-3xl font-semibold text-orange-600 flex items-center gap-2">
-            Welcome Back <span className="wave">👋</span>{" "}
-            <Link href="/">
-              <span className="underline text-lg text-black">HOME</span>
-            </Link>
-          </h2>
           <p className="text-gray-600 lg:text-3xl text-lg ">
-            <span className="font-semibold text-orange-500">Login</span> with
+            <span className="font-semibold text-[#ac0ed4e5]">Login</span> with
             your data that you entered during registration.
           </p>
           <Image
-            src="https://i.ibb.co.com/39JpHWtw/71ao-Rz-Ztc-L-removebg-preview.png"
+            src="https://i.ibb.co.com/YBcz2LTZ/28891279.png"
             alt="Tutor and Student"
-            width={400}
+            width={500}
             height={300}
             className="mx-auto md:mx-0 bg-cover"
           />
-          <p className="text-orange-500 font-semibold text-lg">
+          <p className="text-[#ac0ed4e5] font-semibold text-lg">
             টিউশন বা টিউটর খুঁজে পাবার সেরা প্লাটফর্ম <br />{" "}
             hrhridoyroy503@gmail.com
           </p>
@@ -71,10 +65,9 @@ const LoginForm = () => {
 
         <Card className="md:w-1/2 max-w-md w-full p-6 shadow-lg">
           <CardContent>
-            <h3 className="text-2xl font-semibold text-orange-500 text-center">
+            <h3 className="text-2xl font-semibold text-[#ac0ed4e5] text-center">
               Login Now
             </h3>
-
             <div className="space-y-4 mt-4">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -84,7 +77,6 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Email</FormLabel>
-                        <FormLabel />
                         <FormControl>
                           <Input
                             type="email"
@@ -102,7 +94,6 @@ const LoginForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Password</FormLabel>
-                        <FormLabel />
                         <FormControl>
                           <Input
                             type="password"
@@ -114,21 +105,31 @@ const LoginForm = () => {
                       </FormItem>
                     )}
                   />
+                  <div className="flex justify-between text-sm mt-2">
+                    <Link
+                      href="/forgot-password"
+                      className="text-gray-600 hover:text-[#ac0ed4e5]"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
                   <Button
                     type="submit"
-                    className="w-full mt-2 bg-orange-500 text-white hover:bg-orange-600"
+                    className="w-full mt-4 bg-[#ac0ed4e5] text-white"
                   >
                     Login
                   </Button>
                 </form>
               </Form>
             </div>
-            <p className="text-gray-600 text-center mt-7">
-              If you are not registered, please
-              <Link href="/register" className="text-orange-500 font-semibold">
-                Register
-              </Link>
-            </p>
+            <div className="flex items-center my-4">
+              <hr className="flex-grow border-gray-300" />
+              <span className="px-2 text-gray-600">Or</span>
+              <hr className="flex-grow border-gray-300" />
+            </div>
+            <Link href="/register">
+              <Button className="w-full bg-black text-white">Sign Up</Button>
+            </Link>
           </CardContent>
         </Card>
       </div>

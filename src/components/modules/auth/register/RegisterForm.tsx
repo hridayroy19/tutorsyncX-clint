@@ -55,17 +55,17 @@ const RegisterForm = () => {
             Welcome Back <span className="wave">👋</span>
           </h2>
           <p className="text-gray-600 lg:text-3xl text-lg ">
-            <span className="font-semibold text-orange-500">Login</span> with
+            <span className="font-semibold text-[#ac0ed4e5]">Login</span> with
             your data that you entered during registration.
           </p>
           <Image
-            src="https://i.ibb.co.com/rfdDQ3Pw/3275434.jpg"
+            src="https://i.ibb.co.com/YBcz2LTZ/28891279.png"
             alt="Tutor and Student"
             width={400}
             height={300}
             className="mx-auto md:mx-0 bg-cover"
           />
-          <p className="text-orange-500 font-semibold text-lg">
+          <p className="text-[#ac0ed4e5] font-semibold text-lg">
             টিউশন বা টিউটর খুঁজে পাবার সেরা প্লাটফর্ম <br />{" "}
             hrhridoyroy503@gmail.com
           </p>
@@ -96,17 +96,9 @@ const RegisterForm = () => {
               </Button>
             </div>
 
-            <h3 className="text-2xl font-semibold text-orange-500 text-center">
+            <h3 className="text-2xl font-semibold text-[#ac0ed4e5] text-center">
               Register Now
             </h3>
-
-            {/* <div className="space-y-4 mt-4">
-
-             
-              <Button className="w-full mt-2 bg-orange-500 text-white hover:bg-orange-600">
-                Login
-              </Button>
-            </div> */}
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
@@ -193,8 +185,8 @@ const RegisterForm = () => {
               </form>
             </Form>
             <p className="text-gray-600 text-center mt-7">
-              If you are  registered, please
-              <Link href="/login" className="text-orange-500 font-semibold">
+              If you are registered, please
+              <Link href="/login" className="text-[#ac0ed4e5] font-semibold">
                 Login
               </Link>
             </p>
