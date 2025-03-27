@@ -7,6 +7,7 @@ import AppSchener from "@/components/modules/home/playstore/AppSchener";
 import Testimonials from "@/components/modules/home/testimonials/Testimonials";
 import Trusted from "@/components/modules/home/trusted/Trusted";
 import TuitionTypes from "@/components/modules/home/TuitionTypes/TuitionTypes";
+import TuitionProcess from "@/components/modules/home/tutorsWork/TutorsWork";
 import WhyChooseUs from "@/components/modules/home/whyChoiosUs/WhyChooseUs";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Counter/>
       <TuitionTypes />
       <PopularTutor />
+      <TuitionProcess/>
       <Trusted />
       <WhyChooseUs/>
       <Testimonials/>
